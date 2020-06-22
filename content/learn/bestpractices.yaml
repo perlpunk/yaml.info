@@ -1,0 +1,120 @@
+---
+title: Best Practices - yaml.info
+sections:
+- format: Formatting
+- file: File Extension
+- plain: Plain Scalars
+
+source:
+- section:
+    name: intro
+    title: Best Practices
+    content:
+    - |
+      Here are some tips and tricks for how to write and format YAML files.
+
+- section:
+    name: format
+    title: Formatting
+    content:
+    - <h3>Indentation</h3>
+    - Tabs are forbidden as indentation.
+    - You can freely choose the number of spaces for indentation.
+      More than 8 probably don't make sense, and also this might be a hard limit
+      in the next YAML version.
+    - You can use different indentation inside of the same YAML document,
+      as long as it is the same for one level.
+    - The recommended number of spaces is `2`.
+    - yaml: |
+        # Two spaces
+        top level:
+          a: b
+          c: d
+    - yaml: |
+        # Different number of spaces are invalid
+        top level:
+          a: b
+         c: d
+    - yaml: |
+        # No tabs, please!
+        top level:
+        	a: b
+        	c: d
+    - The opinions on sequence indentation differ.
+    - |
+      The YAML creators recommend to use "zero-indented" sequences:
+    - yaml: |
+        a sequence:
+        - with
+        - three
+        - items
+
+    - <h3>Layout</h3>
+    - |
+      Nested sequences can be formatted in a compact way:
+    - yaml: |
+        sequence:
+        - level one
+        - - level two
+    - |
+      When you have a sequence with more than one level, flow style might be
+      more readable:
+    - yaml: |
+        ---
+        dice rolls:
+        - - 2
+          - 5
+        - - 3
+          - 4
+        ---
+        dice rolls:
+        - [2, 5]
+        - [3, 4]
+
+    - |
+      You cannot start a sequence or another mapping on the same line as
+      a mapping key:
+    - yaml: |
+        key: inner: map
+    - yaml: |
+        key: - sequence
+    - |
+      But you can start a mapping as a sequence item on the same line:
+    - yaml: |
+        ---
+        sequence:
+        -
+          a: b
+          c: d
+        ---
+        # compact
+        sequence:
+        - a: b
+          c: d
+
+- section:
+    name: file
+    title: File Extension
+    content:
+    - The recommended file extension is `.yaml`.
+    - You will find a lot of applications that chose `.yml` though. Some
+      also allow both extensions.
+
+- section:
+    name: plain
+    title: Plain Scalars
+    content:
+    - |
+      You do not need to [quote](#topic:quote) scalars in most cases. The
+      [Quoting Chapter](quote.html) has detailed information about that.
+    - |
+      If you are unsure, here are some hints. To be safe, use quotes:
+    - |
+      <ul>
+      <li>If it could be a special type, but you want a string (TODO: link to schema chapter)
+      <li>If the scalar starts with a non-alphanumeric character
+      <li>If the scalar contains control characters
+      <li>If the scalar contains tabs
+      <li>If the scalar contains `:<space>`, `<space>#`, `-<space>`, `:<end-of-string>`
+      <li>If you are in flow style and the scalar contains one of`{}[],`
+      </ul>

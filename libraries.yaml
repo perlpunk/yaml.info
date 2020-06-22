@@ -1,0 +1,167 @@
+---
+libfyaml:
+  name: libfyaml
+  language: C
+  homepage: https://github.com/pantoniou/libfyaml
+  syntax:
+    1.1: (✓)
+    1.2: ✓
+  schema: {}
+  repology: libfyaml
+  yaml-test-suite: ✓
+  yaml-runtimes: ✓
+
+libyaml:
+  name: libyaml
+  language: C
+  homepage: https://github.com/yaml/libyaml
+  syntax:
+    1.1: '~'
+    1.2: '~'
+  schema: {}
+  repology: libyaml
+  yaml-test-suite: ✓
+  yaml-runtimes: ✓
+
+yaml-cpp:
+  name: yaml-cpp
+  language: C++
+  homepage: https://github.com/jbeder/yaml-cpp
+  syntax:
+    1.1:
+    1.2: '~'
+  schema: {}
+  repology: yaml-cpp
+  yaml-runtimes: ✓
+
+yamldotnet:
+  name: YamlDotNet
+  language: C#
+  homepage: https://github.com/aaubry/YamlDotNet
+  syntax:
+    1.2: ✓
+  yaml-test-suite: ✓
+  yaml-runtimes: ✓
+
+hsyaml:
+  name: HsYAML
+  language: Haskell
+  homepage: https://github.com/haskell-hvr/HsYAML
+  syntax:
+    1.2: ✓
+  schema:
+  options:
+  repology: haskell:hsyaml
+  yaml-test-suite: ✓
+  yaml-runtimes: ✓
+
+java-snakeyaml:
+  name: SnakeYAML
+  language: Java
+  homepage: https://bitbucket.org/asomov/snakeyaml
+  syntax:
+    1.1: '~'
+  yaml-runtimes: ✓
+
+js-jsyaml:
+  name: js-yaml
+  language: Javascript
+  homepage: https://github.com/nodeca/js-yaml
+  syntax:
+    1.1: '~'
+    1.2: '~'
+  schema: {}
+  options:
+  repology: node:js-yaml
+  yaml-runtimes: ✓
+
+js-yaml:
+  name: yaml
+  language: Javascript
+  homepage: https://github.com/eemeli/yaml
+  syntax:
+    1.1: (✓)
+    1.2: ✓
+  schema:
+    1.1: ✓
+    1.2 Core: ✓
+    1.2 JSON: ✓
+    1.2 Failsafe: ✓
+  options:
+  repology: null
+  yaml-test-suite: ✓
+  yaml-runtimes: ✓
+
+yamlpp:
+  name: YAML::PP
+  language: Perl
+  homepage: https://metacpan.org/release/YAML-PP
+  syntax:
+    1.1: '~'
+    1.2: '~'
+  schema:
+    1.1: ✓
+    1.2 Core: ✓
+    1.2 JSON: ✓
+    1.2 Failsafe: ✓
+  options:
+    load:
+    - forbid-circular-refs
+  custom-tags: (✓)
+  repology: perl:yaml-pp
+  yaml-test-suite: ✓
+  yaml-runtimes: ✓
+
+yamlxs:
+  name: YAML::XS (libyaml)
+  language: Perl/XS
+  homepage: https://metacpan.org/release/YAML-LibYAML
+  syntax:
+    1.1: '~'
+    1.2: '~'
+  schema:
+    1.1: x
+    1.2 Core: x
+    1.2 JSON: x
+    1.2 Failsafe: x
+  options:
+  repology: perl:yaml-libyaml
+  yaml-runtimes: ✓
+
+pyyaml:
+  name: PyYAML
+  language: Python
+  homepage: https://github.com/yaml/pyyaml
+  syntax:
+    1.1: '~'
+    1.2: '~'
+  schema:
+    1.1: '~'
+    1.2 Core: x
+    1.2 JSON: x
+    1.2 Failsafe: ✓
+  options:
+  custom-tags: ✓
+  repology: python:pyyaml
+  yaml-runtimes: ✓
+
+ruamel.yaml:
+  name: ruamel.yaml
+  language: Python
+  homepage: https://bitbucket.org/ruamel/yaml
+  syntax:
+    1.1: '~'
+    1.2: '~'
+  schema: {}
+  options:
+  custom-tags: ✓
+  repology: python:ruamel-yaml
+  yaml-runtimes: ✓
+
+ruby-psych:
+  name: psych
+  language: Ruby
+  homepage: https://github.com/ruby/psych
+  yaml-runtimes: ✓
+  syntax:
+    1.1: '~'

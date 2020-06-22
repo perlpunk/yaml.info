@@ -1,0 +1,718 @@
+---
+title: Quoting - Learn - yaml.info
+sections:
+- tldr: Quick comparison - tl;dr
+- flow:
+    title: Flow Scalars
+    children:
+    - plain: Plain
+    - noplain: When to use Quotes
+    - single: Single quoted
+    - double: Double quoted
+- block:
+    title: Block Scalars
+    children:
+    - literal: Literal
+    - folded: Folded
+    - comments: Comments
+    - empty: Leading Empty Lines
+    - chomp: Chomp
+    - indent: Indent
+- document: Header / Footer
+
+source:
+- section:
+    name: intro
+    title: To Quote or not to Quote?
+    content:
+    - |
+      This article covers scalar styles in YAML <a href="http://yaml.org/spec/1.1/">1.1</a> and
+      <a href="http://yaml.org/spec/1.2/spec.html">1.2</a>. It mostly works the same in both
+      versions.
+    - |
+      One design goal of YAML was that it's
+      human friendly. It should be easy to read and edit, even if that makes parsing
+      it harder.
+    - |
+      Let's look at strings, specifically.
+    - |
+      If you look at JSON, you have only one style to encode strings, and that's
+      the double quoted style which doesn't allow literal linebreaks.
+    - |
+      YAML is a data serialization language, but YAML files are used for many
+      different purposes, and there are many types of strings, especially
+      multiline strings. For each use case, you can choose the type of quoting
+      (or no quoting) that makes the string readable and easy to edit.
+    - |
+      This gives you lots of freedom, but you also have to learn using it to avoid
+      mistakes.
+    - |
+      You basically have five ways to express a string:
+
+      <ul>
+      <li><a href="http://yaml.org/spec/1.2/spec.html#id2786942">Flow Scalars</a> (plain, single quoted, double quoted)
+      <li><a href="http://yaml.org/spec/1.2/spec.html#id2793652">Block Scalars</a> (literal, folded)
+      </ul>
+
+- section:
+    name: tldr
+    title: Quick comparison - tl;dr
+    content:
+    - yaml: |
+        ---
+        # Flow Scalar Styles
+        plain scalars:
+        - a string with a \ backslash that doesn't need to be escaped
+        - can also use " quotes ' and $ a % lot /&?+ of other {} [] stuff
+        - a string
+          on multiple lines
+
+        single quoted:
+        - '& starts with a special character, needs quotes'
+        - 'no need to escape backslash \ and double " quote'
+        - 'to express one single quote, use '' two of them'
+
+        double quoted:
+        - "here we can use predefined escape sequences like \t \n \b"
+        - "or generic escape sequences \x0b \u0041 \U00000041"
+        - "the double quote \" needs to be escaped"
+        - "just like the \\ backslash"
+        - "the single quote ' and other characters must not be escaped"
+
+        # Block Scalar Styles
+        literal block scalar: |
+          a multiline text
+          line 2
+          line 3
+
+        # mnemonic: '>' is a folded '|'
+        folded block scalar: >
+          a long line split into
+          several short
+          lines for readability
+
+- section:
+    name: flow
+    title: Flow Scalars
+    content:
+    - |
+      The three types of Flow Scalars have some common rules.
+    - |
+      They can be on multiple lines, and can start on the same line
+      as the parent node.
+    - |
+      Linebreaks are subject to flow folding:
+    - yaml: |
+        ---
+        single: simple scalar on one line
+        ---
+        multi: this is
+          all one
+          single line
+        same as: this is all one single line
+        ---
+        multi:
+          this is
+          all one
+          single line
+        same as: this is all one single line
+
+    - |
+      This can be very useful if you have a long string and want to limit the length
+      of the lines in your YAML file.
+
+    - |
+      Whitespace at the <b>beginning</b> or <b>end</b> of line are ignored:
+    - yaml: |
+        flow: a
+          b	
+          	c
+          d  
+            e
+        same as: a b c d e
+    - |
+      Whitespace <b>inside</b> a line are kept:
+    - yaml: |
+        flow: a
+          b	c
+          d   e
+        same as: "a b\tc d   e"
+    - You should avoid using literal tabs, especially in plain scalars.
+
+    - |
+      There's also a way to enforce newlines. If you add a blank line, it will not
+      be folded:
+    - yaml: |
+          multi:
+            a
+            b
+
+            c
+            d
+          single: "a b\nc d"
+    - |
+      Every following empty line after the first will be kept as a newline, too:
+    - yaml: |
+          multi:
+            a
+            b
+
+
+            c
+            d
+          single: "a b\n\nc d"
+
+- section:
+    name: plain
+    title: Plain Scalars
+    content:
+    - |
+      In YAML, you can write a string without quotes, if it doesn't have a special
+      meaning. See the next section for cases where you have to quote a string.
+    - yaml: |
+          a string: no quotes needed
+          another string: with 'single' and "double" quotes
+          a url: http://example.org/
+    - |
+      You can use literal tabs, backslashes and unicode characters:
+    - yaml: |
+          a string: with a real	 tab character and a \ backslash
+    - |
+      But note that literal tabs are discouraged, as there are edge cases, and they are usually not easy to see.
+
+    - |
+      You can not use escapes sequences like `\n` or `\t` here, it will be returned
+      literally as "Backslash + n" / "Backslash + t".
+
+    - |
+      <p>A comment will end such a plain scalar, so the following example is
+      invalid:</p>
+    - yaml: |
+          multi:
+            first    # a comment
+            second   # this is invalid
+    - |
+      <p>You can only use a comment at the end:</p>
+    - yaml: |
+          multi:
+            first
+            second   # a comment
+    - |
+      <p>It should be noted that, while a plain scalar cannot start with a `-<space>`,
+      for example, the following lines can, although this might look like a badly
+      indented sequence:</p>
+    - yaml: |
+          - a multiline
+            - plain string
+
+          # same as
+          - "a multiline - plain string"
+    - |
+      So you should avoid this.
+
+
+- section:
+    name: noplain
+    title: When not to use Plain Scalars
+    content:
+    - |
+      Because a plain scalar without quotes can conflict with YAML syntax elements,
+      there are some exceptions where you can not use it.
+
+    - |
+      <h3>Characters that cannot be used at the <b>beginning</b> of a plain scalar:</h3>
+    - |
+      <ul>
+      <li>`!` Tag like `!!null`</li>
+      <li>`&` Anchor like `&mapping_for_later_use`</li>
+      <li>`*` Alias like `*mapping_for_later_use`</li>
+      <li>`-<space>` Block sequence entry</li>
+      <li>`:<space>` Block mapping entry</li>
+      <li>`?<space>` Explicit mapping key</li>
+      <li>`{`, `}`, `[`, `]` Flow mapping or sequence</li>
+      <li>`,` Flow Collection entry seperator</li>
+      <li>`#` Comment</li>
+      <li>`|`, `>` Block Scalar</li>
+      <li>`@`, ``` (backtick) Reserved characters</li>
+      <li>`"`, `'` Double and single quote</li>
+      <li>`<whitespace>`</li>
+      <li>`%` Directive</li>
+      </ul>
+    - | #' vim highlighting :-/
+      Examples:
+    - yaml: |
+        - this @ is ok
+        - @but this not
+    - yaml: |
+        - comma,
+        - ,no comma
+    - |
+      <h3>Character sequences that can't be used <b>inside</b> a plain scalar:</h3>
+    - |
+      <ul>
+      <li>`:<space>` Key/value seperator. A colon is allowed, but only if it's not
+        followed by whitespace
+      <li>`<space>#` This starts a comment
+      </ul>
+    - |
+      <h3>There are some additional exceptions for scalars in Flow Style Collections:</h3>
+    - yaml: |
+          flow style sequence: [ string one, string two ]
+          flow style mapping: { key: value }
+    - |
+      As you can see, a comma or a square bracket will end a plain scalar. Therefor,
+      to avoid confusion, the following characters or character sequences
+      are not allowed in plain scalars:
+    - |
+      <ul>
+      <li>`[`, `]`</li>
+      <li>`{`, `}`</li>
+      <li>`,`</li>
+      <li>`:[`</li>
+      <li>`:]`</li>
+      <li>`:{`</li>
+      <li>`:}`</li>
+      <li>`:,`</li>
+      </ul>
+    - |
+      A colon is an indicator for a mapping key if it is followed by one
+      of these characters `[]{},`:
+    - yaml: |
+          # Some processors don't implement this correctly. To be
+          # sure you should always add a space.
+          flow mapping: {key:[sequence]}
+    - |
+      The following example with a colon without a space is also valid in flow style
+      collections, but some processors don't allow it (currently):
+    - yaml: |
+          request: { url: http://example.org/ }
+          urls: [http://example.org/, http://yaml.org/]
+    - |
+      Finally, to be compatible with JSON, you also can omit the space if the key
+      is quoted:
+    - yaml: |
+          flow mapping: { "quoted":23 }
+    - <h3>Special types</h3>
+    - |
+      Another use case for quotes is when you have a string that would be resolved
+      as a special type. This highly depends on the YAML version and on the Schema
+      in use. Here are some examples where you need quotes:
+    - |
+      <ul>
+      <li>`true`, `false`</li>
+      <li>`23`</li>
+      <li>`1e3`</li>
+      <li>`3.14159`</li>
+      <li>`null`</li>
+      </ul>
+    - |
+      To learn which scalars are special in which version, you might read my article
+      [Introduction to YAML Schemas and
+      Tags](http://blogs.perl.org/users/tinita/2018/01/introduction-to-yaml-schemas-and-tags.html).
+- section:
+    name: single
+    title: Single Quoted Scalar
+    content:
+    - |
+      In the last section you learned when you have to quote a scalar. Single quoted
+      scalars mostly work like plain scalars, only that the special character
+      sequences are allowed:
+    - yaml: |
+          a string:         '&enclosed in single quotes'
+          colon plus space: 'this colon : would be forbidden without quotes'
+          another colon plus space:
+            'this colon : would create a mapping without quotes'
+          no comment:       'this would be # a comment without quotes'
+          curly brace:      '{ this would be: a flow style mapping }'
+          square bracket:   '[ this would be a flow style sequence ]'
+          backslash:        'this \n is a backslash and "n", not a linebreak'
+    - |
+      Any character except `'` will be returned literally. You can not use
+      escapes sequences here.
+
+      The single quote itself is escaped by doubling it:
+    - yaml: |
+          a string: 'with one single '' quote'
+    - |
+      The following demonstrates that a backslash is not an escape character:
+    - yaml: |
+          a string: 'this is \' # the end of the string'
+    - |
+      In JSON, this would be:
+    - yaml: |
+          { "a string": "this is \\" }
+    - |
+      So the `# the end of the string'` is really a comment.
+    - <h3>Multiple lines</h3>
+    - |
+      Folding rules are like in all flow scalars:
+    - yaml: |
+          multi:
+            'a
+            b  
+            c
+            d'
+          single: 'a b c d'
+    - |
+      However, spaces after the starting quote or before the ending quote
+      will be kept:
+    - yaml: |
+          multi:
+            '  a
+            b
+            c
+            d   '
+          single: "  a b c d   "
+
+
+- section:
+    name: double
+    title: Double Quoted Scalar
+    content:
+    - |
+      A double quoted scalar has the same rules as a single quoted scalar, plus
+      <b>escape sequences</b>. This is the only scalar style where you can use escape
+      sequences.
+    - |
+      The escaping rules are compatible to JSON.
+      (I should note, though, that it also depends on the processor you use,
+      since not all are fully JSON compatible. The incompatible cases should be
+      rare, though.)
+    - yaml: |
+          a string: "here's a \t tab and a \n newline,
+            followed by a \\ backslash"
+          another string: "with an escaped \" double quote"
+    - |
+      It's important to note, that only a limited set of characters can be escaped.
+      Other escapes are invalid:
+    - yaml: |
+          - "invalid \. escape"
+          - "invalid \' escape"
+          - "invalid \- escape"
+    - |
+      There are special escape sequences which let you express any character:
+    - yaml: |
+          - "a \x20 space"
+          - "a vertical \v tab can also be written as \x0B or \x0b"
+          - "an 'A' in 8-bit unicode: \x41"
+          - "an 'A' in 16-bit unicode: \u0041"
+          - "an 'A' in 32-bit unicode: \U00000041"
+    - |
+      The list of allowed escapes can be found here:
+      <ul>
+      <li>[YAML 1.2 - 5.7. Escaped Characters](http://yaml.org/spec/1.2/spec.html#id2776092)</li>
+      <li>[YAML 1.1 - 5.6. Escape Sequences](http://yaml.org/spec/1.1/#id872840)</li>
+      </ul>
+
+      In YAML 1.1, escaping of a slash is forbidden. In 1.2, this was one of the
+      changes made to be compatible with JSON:
+    - yaml: |
+          string: "escaped \/ slash"
+    - |
+      The backslash also has an additional meaning. If you add it to the end of
+      a line, the next line will be folded without a space.
+
+      This is useful when you want to break a long string into several lines, but it
+      doesn't have spaces anywhere:
+    - yaml: |
+          a long string without spaces:
+            "loooooooooooooooooooooooooooooooooooooooooooooooooongstring\
+             loooooooooooooooooooooooooooooooooooooooooooooooooongstring\
+             loooooooooooooooooooooooooooooooooooooooooooooooooongstring"
+    - |
+      You can also use it to preserve spaces at the end:
+    - yaml: |
+          multi:
+            "the first line ends with 5 spaces     \
+            second line"
+          single: "the first line ends with 5 spaces     second line"
+    - |
+      In that case the five spaces are preserved and will be used for folding.
+
+      You can use a Backslash plus Space at the beginning of the line to get
+      a similar effect:
+    - yaml: |
+          multi:
+            "first
+            \     5 spaces
+            third"
+          single: "first      5 spaces third"
+    - |
+      Note that you will actually get six spaces in this case!
+
+
+- section:
+    name: block
+    title: Block Scalars
+    content:
+    - |
+      When your string is longer, it can be a good idea to use a block scalar to
+      make it more readable.
+    - You can choose between Literal and Folded Block Scalars.
+    - In both, you cannot use escape sequences.
+    - Spaces at the beginning or end of the line will be preserved.
+
+- section:
+    name: literal
+    title: Literal Block Scalar
+    content:
+    - |
+      A Literal Block Scalar is introduced with the `|` pipe. The content starts
+      on the next line and has to be indented:
+    - yaml: |
+        literal: |
+          line 1
+           line 2
+          end
+    - |
+      The indendation is detected from the first (non-empty) line of the block scalar.
+    - |
+      The newlines will be preserved, so this is equivalent to:
+    - yaml: |
+          quoted: "line 1\n line 2\nend\n"
+    - |
+      This way you can add all kinds of text to your YAML, for example a shell script:
+    - yaml: |
+          bash: |
+            #!/usr/bin/env bash
+            echo "Help, I'm trapped in a YAML document!"
+            exit 1
+    - |
+      You could even embed a YAML document in YAML! If you ever had to do this
+      in JSON, you know how ugly this can get.
+    - |
+      Also trailing spaces will be preserved.
+    - yaml: |
+        - |
+          trailing spaces   
+          trailing tab	
+        - "trailing spaces   \ntrailing tab\t\n"
+
+- section:
+    name: folded
+    title: Folded Block Scalar
+    content:
+    - |
+      The Folded Block Scalar, as the name suggests, will fold its lines with spaces.
+      It is introduced with the `>` sign, which can be seen as a folded `|`.
+    - yaml: |
+          a long command: >
+            apt-get update
+            && apt-get install -y
+            git tig vim jq tmux tmate git-subrepo
+          quoted: "apt-get update && apt-get install -y git
+            tig vim jq tmux tmate git-subrepo\n"
+    - |
+      The folding rules are actually almost the same as for quoted scalars.
+      You can enforce a newline with an empty line:
+    - yaml: |
+          a text with long lines: >
+            this is the first
+            long line
+
+            and this is the
+            second
+
+          quoted: "this is the first long line\nand this is the second\n"
+    - |
+      There's an additional way to enforce newlines, and probably not very well
+      known:
+    - yaml: |
+          a long text with enforced newlines: >
+            line
+            one
+              line two
+              line three
+            line
+            four
+          quoted: "line one\n  line two\n  line three\nline four\n"
+    - |
+      Another difference to quoted folding is that trailing spaces are kept:
+    - yaml: |
+          a text with long lines: >
+            trailing spaces   
+            continued
+
+          quoted: "trailing space    continued\n"
+
+- section:
+    name: comments
+    title: Comments
+    content:
+    - |
+      If a line starting with `#` is indented correctly, it will not be interpreted
+      as a comment:
+    - yaml: |
+          literal: |
+            a
+            # no comment
+            b
+          quoted: "a\n# no comment\nb\n"
+    - |
+      Also note that even the first line can start with a `#`:
+    - yaml: |
+          folded: >
+            # no comment
+            a
+            b
+          quoted: "# no comment a b\n"
+    - |
+      A less indented line starting with a `#` will be interpreted as a comment and
+      will also end the block scalar:
+    - yaml: |
+          folded: >
+              a
+              b
+            # a comment, end of block scalar
+    - |
+      You can add comments to a block scalar directly after the header:
+    - yaml: |
+          literal: | # a block scalar
+            abc
+            def
+          folded: > # a block scalar
+            abc
+            def
+
+- section:
+    name: empty
+    title: Leading Empty Lines
+    content:
+    - |
+      Unlike trailing empty lines, at the beginning they will be preserved. Note that
+      lines containing only spaces count as empty lines here. An underscore "_" is
+      used to represent the spaces:
+    - yaml: |
+          folded: >
+            
+            __
+              a
+              b
+
+          quoted: "\n\na b\n"
+- section:
+    name: chomp
+    title: Chomp Indicator
+    content:
+    - |
+      You might have noticed that Block Scalars always end with a newline.
+      This is the default behaviour. Any further trailing newlines will be stripped:
+    - yaml: |
+          literal: |
+            a
+            b
+
+
+          quoted: "a\nb\n"
+
+          folded: >
+            a
+            b
+
+
+          quoted: "a b\n"
+
+    - |
+      If you don't want to end your scalar with a newline, you can use the `-`
+      chomping indicator:
+    - yaml: |
+          literal: |-
+            a
+            b
+
+          quoted: "a\nb"
+
+          folded: >-
+            a
+            b
+
+          quoted: "a b"
+    - |
+      If you want to keep all trailing newlines, use the "keep" `+` indicator:
+    - yaml: |
+          literal: |+
+            a
+            b
+
+
+          quoted: "a\nb\n\n\n"
+
+          folded: >+
+            a
+            b
+
+
+          quoted: "a b\n\n\n"
+
+- section:
+    name: indent
+    title: Block Scalar Indenting
+    content:
+    - |
+      Sometimes, your block scalar might start with one or multiple spaces that
+      you want to preserve:
+    - yaml: |
+          literal: | # invalid!
+              This Is A Header
+            The body starts here
+    - |
+      All continuation lines in a block scalar have to be indented at least as much as
+      the first line.
+
+      So how can you preserve the spaces in the first line? By specifying the number
+      of indentation spaces in the block scalar header:
+
+    - yaml: |
+          implicit: | # indentation is 1
+           line
+
+          explicit: |2
+              This Is A Header
+            The body starts here
+          quoted: "  This is A Header\nThe body starts here\n"
+    - |
+      This tells the YAML processor that the indentation is 2. Note that the
+      number must be greater than zero.
+
+      You can also combine the indicators, and the order does not matter:
+    - yaml: |
+          literal: |-2
+              header
+            body
+
+          quoted: "  header\nbody"
+
+- section:
+    name: document
+    title: Document Header and Footer
+    content:
+    - |
+      A special note about the Document Headers and Footers.
+    - |
+      In YAML, `---<space>` or `---<linebreak>` at the beginning of a line explicitly
+      starts the document.
+    - |
+      `...<space>` or `...<linebreak>` ends a document.
+    - |
+      Even inside of Block Scalars or Quoted Scalars they still have their special
+      meaning.
+    - |
+      If your YAML document consistes of only one string at the top level, you
+      should still indent it, because otherwise it might break your content if
+      it contains `---` or `...`.
+    - yaml: |
+          --- "valid
+            ---
+            scalar"
+    - yaml: |
+          --- "valid
+            ...
+            scalar"
+    - yaml: |
+          --- >
+            block
+            scalar
+            ---
+            more block
+            scalar
+

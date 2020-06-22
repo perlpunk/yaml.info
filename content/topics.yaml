@@ -1,0 +1,9 @@
+---
+title: Index
+sidenav:
+  class: narrow
+
+source:
+- |
+  <h2>Topic Index</h2>
+- index: 1

@@ -1,0 +1,5 @@
+tmux -2 new -s demo
+
+tmux capture-pane -tdemo -e -b temp-capture-buffer
+tmux save-buffer -b temp-capture-buffer demo.log
+perl bin/ansicolor.pl < demo.log > demo.html

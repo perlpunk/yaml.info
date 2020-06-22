@@ -1,0 +1,98 @@
+---
+title: Developers - yaml.info
+sections:
+- testsuite: YAML Test Suite
+- matrix: YAML Test Matrix
+- schema: YAML Test Schema
+- play: Play with other Libraries
+- future: Future of YAML
+
+source:
+- section:
+    name: intro
+    title: Information for YAML developers
+    content:
+    - |
+      This page lists some helpful resources for people implementing
+      YAML processors
+
+- section:
+    name: testsuite
+    title: YAML Test Suite
+    content:
+    - |
+      Since 2016, there is an official [YAML Test
+      Suite](https://github.com/yaml/yaml-test-suite).
+    - |
+      It is still in development, but you can use it by pinning to a certain
+      version.
+    - It currently has over 300 test cases that try to cover all kinds of
+      YAML syntax.
+
+
+- section:
+    name: matrix
+    title: YAML Test Matrix
+    content:
+    - The [YAML Test Matrix](https://matrix.yaml.io/) shows test results for
+      those test cases for various YAML Libraries.
+
+- section:
+    name: schema
+    title: YAML Test Schema
+    content:
+    - |
+      While the YAML Test Suite currently concentrates on Syntax, there is
+      a [yaml-test-schema
+      repository](https://github.com/perlpunk/yaml-test-schema) for testing the
+      various Schemas for YAML 1.2 and 1.1.
+    - |
+      It might get part of YAML Test Suite at some point.
+
+- section:
+    name: play
+    title: Play with other Libraries
+    content:
+    - |
+      While developing, it can help to look at what other YAML Libraries are
+      doing.
+    - |
+      In 2016, Ingy döt Net started the [YAML Editor](https://github.com/yaml/yaml-editor).
+      It has now been split up to [YAML Runtimes](https://github.com/yaml/yaml-runtimes).
+    - |
+      YAML Runtimes contains Dockerfiles for currently 21 different YAML Libraries.
+      It allows you to see the parsing events and JSON output for YAML input.
+    - |
+      YAML Editor is built on top of that.
+      It starts Vim inside the container with a split window layout with fancy
+      shortcuts to quickly see YAML input processed by different libraries.
+
+    - terminal: yaml-editor.html
+
+- section:
+    name: future
+    title: Future of YAML
+    content:
+    - |
+      While the YAML 1.2 version was an improvement to 1.1, it still has syntax
+      rules that make it hard to implement.
+    - |
+      There is a version 1.3 in planning.
+    - |
+      For example one syntax element will very probably be removed: Empty keys
+    - |
+      Read more about Empty Keys and other Features in the [Main
+      Chapter](index.html).
+    - |
+      This is just one of the things making developer life easier when it gets
+      removed.
+    - |
+      If you start a new YAML library, it might be a good idea to not support
+      empty keys. libyaml/PyYAML and several other libraries ported from them
+      or having bindings don't support them either, and they are probably
+      rarely used.
+    - |
+      If you are using the YAML Test Suite, you can simply skip those test
+      cases with the `empty-key` tag, and in the YAML Test Matrix those cases
+      will show up as "not implemented" instead of a failure.
+

@@ -1,0 +1,41 @@
+---
+top:
+- index: '!yaml.info'
+- learn:
+  - index: Learn
+  - quote: Quoting
+  - bestpractices: Best Practices
+#  - versions: Versions
+#  - documents: Documents
+#  - schema: Schema
+- libraries:
+  - index: Libraries
+  - dev: Developers
+  - repology: Repology
+#- about: About
+
+header: |
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <title>${TITLE}</title>
+  <link rel="stylesheet" type="text/css" href="${BASE}/css/main.css">
+  <link rel="stylesheet" type="text/css" href="${BASE}/css/yaml.css">
+  <link rel="stylesheet" type="text/css" href="${BASE}/css/ansicolor.css">
+  <script src="${BASE}/js/jquery-3.5.1.min.js"></script>
+  <script src="${BASE}/js/main.js"></script>
+
+  </head>
+  <body>
+
+footer: |
+  <div id="footer">
+  <a href="${BASE}/topics.html">Index</a>
+  <p>
+  <a href="https://github.com/perlpunk/yaml.info/blob/master/content/LICENSE">© 2020 Tina Müller</a>
+  <a href="https://github.com/perlpunk/yaml.info">https://github.com/perlpunk/yaml.info</a>
+  </p>
+  </div>
+  </body>
+  </html>
