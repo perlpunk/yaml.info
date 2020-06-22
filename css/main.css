@@ -1,0 +1,267 @@
+body {
+  font-family: Verdana, Arial;
+  color: #111;
+  background-color: #eee;
+  border-top: 5px solid #fc0;
+}
+
+/* TOP NAVI */
+#topnav {
+  background-color: #444;
+  overflow: hidden;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  max-height: 2.5em;
+  width: 100%;
+}
+#topnav a {
+  float: left;
+  color: #f0f0f0;
+  text-align: center;
+  padding: 0.5em 1em 1em 1em;
+  text-decoration: none;
+  font-size: 110%;
+  border-right: 1px solid #666;
+  font-weight: bold;
+}
+#topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+#topnav a.active {
+  background-color: #fc0;
+  color: black;
+}
+#topnav a.home {
+  font-size: 135%;
+  font-family: monospace;
+  text-shadow: 0.1em 0.1em 0.1em #a80;
+}
+#topnav a.source img {
+  vertical-align: top;
+  height: 1.2em;
+}
+
+span.code {
+  font-family: monospace;
+  background-color: #ffffff;
+  border: 1px solid #d8d8d8;
+  padding: 0.05em 0.4em 0.1em 0.4em;
+  color: #000055;
+}
+div.codebox pre, pre.terminal {
+  font-family: monospace;
+  font-size: 100%;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  box-shadow: 2px 2px 4px 1px #ddd;
+  overflow-y: auto;
+  padding: 0.5em;
+  margin: 0px;
+  line-height: 1.2em;
+}
+
+div.codebox {
+  width: 40em;
+}
+pre.terminal {
+  width: 54em;
+}
+pre.terminal, div.codebox {
+  min-width: 40em;
+  max-width: 70em;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+/* SIDEBAR */
+#sidenav {
+  height: 100%;
+  width: 15em;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  overflow-x: show;
+  overflow-y: auto;
+  background-color: #ddd;
+}
+#sidenav p.spacer {
+  height: 1.5em;
+}
+#sidenav.narrow {
+  width: 10em;
+}
+#sidenav ul {
+  list-style-type: none;
+  padding: -5px 0 -5px 1.5em;
+  padding-left: 1.5em;
+  margin: 0 0 0 -0.4em;
+}
+#sidenav ul li {
+  margin: 0em 1em 0em -1em;
+  border-bottom: 1px dotted #bbb;
+}
+
+#sidenav a {
+  margin: 0.0em;
+  text-decoration: none;
+  font-size: 100%;
+  color: #444;
+  display: block;
+  padding: 0.15em;
+}
+#sidenav a.active, #sidenav a:target {
+  background-color: #fc0;
+}
+#sidenav a.top {
+  font-weight: bold;
+  font-size: 110%;
+  margin: 0.1em;
+  padding: 0.2em;
+  border-top: 1px solid #bbb;
+}
+#sidenav a:hover {
+  color: black;
+}
+#sidenav a.active {
+  background-color: #fc0;
+}
+#sidenav.hide {
+  width: 1em;
+}
+#sidenav a.scroll_active {
+  background-color: #ccc;
+}
+
+/* MAIN */
+.main {
+  margin-top: 2em;
+  margin-left: 17em;
+  padding: 1em 0px;
+  line-height: 1.2em;
+}
+.main.hide {
+  margin-left: 1em;
+  overflow-x: hide;
+}
+.main-narrow {
+  margin-left: 10em;
+}
+.main h1, .main h2, .main h3 {
+  text-shadow: 0.1em 0.1em 0.1em #bbb;
+}
+.main div.section {
+  padding-top: 2.5em;
+  margin-top: -2.5em;
+}
+
+.main a, #sidenav a.top {
+  color: #cc4400;
+  text-shadow: 0.5px 0.5px 0.5px #bbb;
+  text-decoration: none;
+}
+.main a {
+  padding: 1px;
+}
+.main a.topic {
+  border: 1px solid #ccc;
+  padding: 0.1em 0.3em;
+  background-color: #f8f8f8;
+}
+.main a:hover, #sidenav a:hover {
+  background-color: #fc0
+}
+.main > div.section > p {
+  max-width: 40em;
+}
+.main p {
+  padding-left: 0.5em;
+}
+.main p.source {
+  border-top: 1px solid #aaa;
+  clear: both;
+}
+.main p.source a {
+  color: blue;
+  text-shadow: none;
+  font-family: monospace;
+}
+
+#repology div.badge {
+  float: left;
+  box-shadow: 2px 2px 4px 1px #ddd;
+  background-color: white;
+  margin: 0.5em;
+}
+#repology div.last {
+}
+#repology div.repos {
+  max-height: 20em;
+  overflow-y: scroll;
+}
+table.libcompare {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  box-shadow: 2px 2px 4px 1px grey;
+}
+table.libcompare tr th, table.libcompare tr td {
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 0.2em 0.2em 0.2em 0.2em;
+  min-width: 4em;
+  text-align: center;
+}
+table.libcompare span.checkmark {
+  color: #00aa00;
+  font-weight: bold;
+}
+table.libcompare span.na {
+  color: #aaa;
+}
+table.libcompare span.mostly {
+  color: #cc5500;
+  font-weight: bold;
+}
+table.libcompare span.no {
+  color: #000;
+}
+
+#footer {
+  bottom: 0;
+  width: 100%;
+  font-size: 90%;
+  background-color: #ccc;
+  display: block;
+  clear: both;
+  text-align: center;
+  z-index: 0;
+  border-top: 1px dotted #888;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  margin: 0px;
+  font-family: monospace;
+}
+#footer p {
+  padding-left: 20em;
+}
+
+/* On smaller screens, change the style of the
+ * sidebar (less padding and a smaller font size) */
+@media screen and (max-width: 850px) {
+  #sidenav a {font-size: 80%;}
+  #sidenav a.top {font-size: 80%;}
+  #sidenav { width: 10em; }
+  #topnav a { padding: 0.2em; font-size: 100% }
+  #topnav a.home { font-size: 110%; }
+  .main { margin-left: 10em; }
+  .main h1, .main h2, .main h3 { text-shadow: none; }
+  .main h1 { font-size: 110% }
+  .main h2 { font-size: 105% }
+  .main h3 { font-size: 100% }
+  #sidenav p.spacer { height: 0.5em; }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Developers - yaml.info</title>
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/yaml.css">
+<link rel="stylesheet" type="text/css" href="../css/ansicolor.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/main.js"></script>
+
+</head>
+<body>
+
+<div id="topnav">
+<a class="home" href="../index.html">!yaml.info</a>
+<a  href="../learn/index.html">Learn</a>
+<a class="active" href="../libraries/index.html">Libraries</a>
+
+<a class="source" href="https://github.com/perlpunk/yaml.info">Contribute <img src="../img/GitHub-Mark-Light-32px.png"></a>
+</div>
+<div id="sidenav" class=""><p class="spacer"></p>
+<a class="top" href="../libraries/index.html">Libraries</a>
+<a class="top active" href="../libraries/dev.html">Developers</a>
+<ul><li><a id="link_testsuite" href="#testsuite">YAML Test Suite</a></li>
+<li><a id="link_matrix" href="#matrix">YAML Test Matrix</a></li>
+<li><a id="link_schema" href="#schema">YAML Test Schema</a></li>
+<li><a id="link_play" href="#play">Play with other Libraries</a></li>
+<li><a id="link_future" href="#future">Future of YAML</a></li>
+</ul><a class="top" href="../libraries/repology.html">Repology</a>
+
+</div>
+<div class="main main-">
+<div class="section" id="intro">
+<h2>Information for YAML developers</h2>
+<p>This page lists some helpful resources for people implementing
+YAML processors
+</p></div>
+<div class="section" id="testsuite">
+<h2>YAML Test Suite</h2>
+<p>Since 2016, there is an official <a href="https://github.com/yaml/yaml-test-suite">YAML Test
+Suite</a>.
+</p><p>It is still in development, but you can use it by pinning to a certain
+version.
+</p><p>It currently has over 300 test cases that try to cover all kinds of YAML syntax.</p></div>
+<div class="section" id="matrix">
+<h2>YAML Test Matrix</h2>
+<p>The <a href="https://matrix.yaml.io/">YAML Test Matrix</a> shows test results for those test cases for various YAML Libraries.</p></div>
+<div class="section" id="schema">
+<h2>YAML Test Schema</h2>
+<p>While the YAML Test Suite currently concentrates on Syntax, there is
+a <a href="https://github.com/perlpunk/yaml-test-schema">yaml-test-schema
+repository</a> for testing the
+various Schemas for YAML 1.2 and 1.1.
+</p><p>It might get part of YAML Test Suite at some point.
+</p></div>
+<div class="section" id="play">
+<h2>Play with other Libraries</h2>
+<p>While developing, it can help to look at what other YAML Libraries are
+doing.
+</p><p>In 2016, Ingy döt Net started the <a href="https://github.com/yaml/yaml-editor">YAML Editor</a>.
+It has now been split up to <a href="https://github.com/yaml/yaml-runtimes">YAML Runtimes</a>.
+</p><p>YAML Runtimes contains Dockerfiles for currently 21 different YAML Libraries.
+It allows you to see the parsing events and JSON output for YAML input.
+</p><p>YAML Editor is built on top of that.
+It starts Vim inside the container with a split window layout with fancy
+shortcuts to quickly see YAML input processed by different libraries.
+</p><pre class="terminal"><span class="yellow">  1 </span><span class="magenta">---</span><span class="">                      </span><span class="on_white black">|</span><span class="">+STR                         </span><span class="on_white black">|</span><span class="">+STR
+</span><span class="yellow">  2 </span><span class="cyan">foo</span><span class="magenta">:</span><span class=""> bar                 </span><span class="on_white black">|</span><span class="">+DOC ---                     </span><span class="on_white black">|</span><span class="">+DOC ---
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">+MAP                         </span><span class="on_white black">|</span><span class="">+MAP
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">=VAL :foo                    </span><span class="on_white black">|</span><span class="">=VAL :foo
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">=VAL :bar                    </span><span class="on_white black">|</span><span class="">=VAL :bar
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">-MAP                         </span><span class="on_white black">|</span><span class="">-MAP
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">-DOC                         </span><span class="on_white black">|</span><span class="">-DOC
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">-STR                         </span><span class="on_white black">|</span><span class="">-STR
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|&lt;libyaml.event 1,1        All &lt;ibfyaml.event 1,1        All
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="magenta">{</span><span class="">                            </span><span class="on_white black">|</span><span class="magenta">{</span><span class="">
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="">  &quot;</span><span class="yellow">foo</span><span class="">&quot;: &quot;</span><span class="red">bar</span><span class="">&quot;               </span><span class="on_white black">|</span><span class="">  &quot;</span><span class="yellow">foo</span><span class="">&quot;: &quot;</span><span class="red">bar</span><span class="">&quot;
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="magenta">}</span><span class="">                            </span><span class="on_white black">|</span><span class="magenta">}</span><span class="">
+</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+~                            </span><span class="on_white black">|</span><span class="bold blue">~                            </span><span class="on_white black">|</span><span class="bold blue">~
+</span><span class="bold on_white black">input.yaml     1,1        All </span><span class="on_white black">js-yaml.json   1,1        All &lt;y-pyyaml.json 1,1        All
+</span><span class="">
+</span></pre>
+</div>
+<div class="section" id="future">
+<h2>Future of YAML</h2>
+<p>While the YAML 1.2 version was an improvement to 1.1, it still has syntax
+rules that make it hard to implement.
+</p><p>There is a version 1.3 in planning.
+</p><p>For example one syntax element will very probably be removed: Empty keys
+</p><p>Read more about Empty Keys and other Features in the <a href="index.html">Main
+Chapter</a>.
+</p><p>This is just one of the things making developer life easier when it gets
+removed.
+</p><p>If you start a new YAML library, it might be a good idea to not support
+empty keys. libyaml/PyYAML and several other libraries ported from them
+or having bindings don't support them either, and they are probably
+rarely used.
+</p><p>If you are using the YAML Test Suite, you can simply skip those test
+cases with the <span class="code">empty-key</span> tag, and in the YAML Test Matrix those cases
+will show up as "not implemented" instead of a failure.
+</p></div>
+
+<p class="source">
+<a href="https://github.com/perlpunk/yaml.info/blob/master/content/libraries/dev.yaml">Page Source</a>
+</p>
+</div>
+<div id="footer">
+<a href="../topics.html">Index</a>
+<p>
+<a href="https://github.com/perlpunk/yaml.info/blob/master/content/LICENSE">© 2020 Tina Müller</a>
+<a href="https://github.com/perlpunk/yaml.info">https://github.com/perlpunk/yaml.info</a>
+</p>
+</div>
+</body>
+</html>
+
