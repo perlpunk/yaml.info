@@ -111,7 +111,7 @@ source:
       If you are unsure, here are some hints. To be safe, use quotes:
     - |
       <ul>
-      <li>If it could be a special type, but you want a string (TODO: link to schema chapter)
+      <li>If it could be a special type, but you want a string (see [Schema](schema.html))
       <li>If the scalar starts with a non-alphanumeric character
       <li>If the scalar contains control characters
       <li>If the scalar contains tabs

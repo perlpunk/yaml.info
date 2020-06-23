@@ -1,0 +1,20 @@
+---
+title: Schema - yaml.info
+sections:
+
+source:
+- section:
+    name: intro
+    title: Schema
+    content:
+    - Work in Progress
+    - This chapter documents how YAML nodes are loaded into data types.
+    - |
+      [A quick overview over Scalar Types in YAML 1.2 and
+      1.1](https://perlpunk.github.io/yaml-test-schema/schemas.html)
+    - |
+      [Example data](https://perlpunk.github.io/yaml-test-schema/data.html)
+    - |
+      I wrote [Introduction to YAML Schemas and
+      Tags](http://blogs.perl.org/users/tinita/2018/01/introduction-to-yaml-schemas-and-tags.html)
+      in 2018 and will move it over here.

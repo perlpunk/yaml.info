@@ -305,10 +305,7 @@ source:
       <li>`3.14159`</li>
       <li>`null`</li>
       </ul>
-    - |
-      To learn which scalars are special in which version, you might read my article
-      [Introduction to YAML Schemas and
-      Tags](http://blogs.perl.org/users/tinita/2018/01/introduction-to-yaml-schemas-and-tags.html).
+    - See [YAML Schema and Tags](schema.html)
 - section:
     name: single
     title: Single Quoted Scalar

@@ -4,10 +4,10 @@ top:
 - learn:
   - index: Learn
   - quote: Quoting
+  - schema: Schema
   - bestpractices: Best Practices
 #  - versions: Versions
 #  - documents: Documents
-#  - schema: Schema
 - libraries:
   - index: Libraries
   - dev: Developers
