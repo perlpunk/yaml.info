@@ -24,8 +24,9 @@ source:
       <li>[Sequence](#topic:sequence)<br>
       A list of nodes</li>
       <li>[Mapping](#topic:mapping)</a><br>
-      A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or Objects.<br>
-      Unlike in many programming languages, a key can be more than just a string.<br>
+      A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or
+      Objects.<br> Unlike in many programming languages, a key can be more than
+      just a string.<br>
       It can be a sequence or mapping itself.</li>
       </ul>
     - |
@@ -136,8 +137,8 @@ source:
     - |
       <h3>Sequence</h3>
     - |
-      A sequence is a list (or array) of scalars (or other sequences or mappings).<br>
-      A sequence item starts with a hyphen and a space `- `.<br>
+      A sequence is a list (or array) of scalars (or other sequences or
+      mappings).<br> A sequence item starts with a hyphen and a space `- `.<br>
       Here is the list of
       YAML inventors:
     - yaml: |
@@ -146,7 +147,8 @@ source:
         - Ingy döt Net
 
     - |
-      Now back to our invoice; we map a list of scalars to the key `order items`.
+      Now back to our invoice.<br>
+      We map a list of scalars to the key `order items`.
     - |
       The sequence must start on the next line:
     - yaml: |
@@ -404,3 +406,4 @@ source:
     - |
       So it's clever that GitHub Actions chose the `${{ ... }}` syntax, because
       the `$` at the start is not special in YAML and doesn't need quotes.
+

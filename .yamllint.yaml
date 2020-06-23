@@ -1,0 +1,18 @@
+---
+extends: default
+
+rules:
+  indentation:
+    spaces: 2
+    indent-sequences: false
+  empty-lines: { max: 2, max-start: 1, max-end: 2 }
+  line-length: { max: 150 }
+  braces: &br
+    min-spaces-inside: 1
+    max-spaces-inside: 1
+    min-spaces-inside-empty: 0
+    max-spaces-inside-empty: 0
+  brackets: *br
+
+ignore: |
+  .github/workflows/linux.yaml

@@ -6,3 +6,6 @@ build: gh-pages
 gh-pages:
 	git branch gh-pages --track origin/gh-pages
 	git worktree add gh-pages gh-pages
+
+lint:
+	yamllint -c .yamllint.yaml .

@@ -123,6 +123,7 @@ source:
 
     - |
       Whitespace at the <b>beginning</b> or <b>end</b> of line are ignored:
+    # yamllint disable rule:trailing-spaces
     - yaml: |
         flow: a
           b	
@@ -130,6 +131,7 @@ source:
           d  
             e
         same as: a b c d e
+    # yamllint enable rule:trailing-spaces
     - |
       Whitespace <b>inside</b> a line are kept:
     - yaml: |
@@ -178,7 +180,8 @@ source:
     - yaml: |
           a string: with a real	 tab character and a \ backslash
     - |
-      But note that literal tabs are discouraged, as there are edge cases, and they are usually not easy to see.
+      But note that literal tabs are discouraged, as there are edge cases, and
+      they are usually not easy to see.
 
     - |
       You can not use escapes sequences like `\n` or `\t` here, it will be returned
@@ -343,6 +346,7 @@ source:
     - <h3>Multiple lines</h3>
     - |
       Folding rules are like in all flow scalars:
+    # yamllint disable rule:trailing-spaces
     - yaml: |
           multi:
             'a
@@ -350,6 +354,7 @@ source:
             c
             d'
           single: 'a b c d'
+    # yamllint enable rule:trailing-spaces
     - |
       However, spaces after the starting quote or before the ending quote
       will be kept:
@@ -479,11 +484,13 @@ source:
       in JSON, you know how ugly this can get.
     - |
       Also trailing spaces will be preserved.
+    # yamllint disable rule:trailing-spaces
     - yaml: |
         - |
           trailing spaces   
           trailing tab	
         - "trailing spaces   \ntrailing tab\t\n"
+    # yamllint enable rule:trailing-spaces
 
 - section:
     name: folded
@@ -525,12 +532,14 @@ source:
           quoted: "line one\n  line two\n  line three\nline four\n"
     - |
       Another difference to quoted folding is that trailing spaces are kept:
+    # yamllint disable rule:trailing-spaces
     - yaml: |
           a text with long lines: >
             trailing spaces   
             continued
 
           quoted: "trailing space    continued\n"
+    # yamllint enable rule:trailing-spaces
 
 - section:
     name: comments
@@ -579,6 +588,7 @@ source:
       Unlike trailing empty lines, at the beginning they will be preserved. Note that
       lines containing only spaces count as empty lines here. An underscore "_" is
       used to represent the spaces:
+    # yamllint disable rule:trailing-spaces
     - yaml: |
           folded: >
             
@@ -587,6 +597,8 @@ source:
               b
 
           quoted: "\n\na b\n"
+    # yamllint enable rule:trailing-spaces
+
 - section:
     name: chomp
     title: Chomp Indicator
@@ -656,8 +668,8 @@ source:
       All continuation lines in a block scalar have to be indented at least as much as
       the first line.
 
-      So how can you preserve the spaces in the first line? By specifying the number
-      of indentation spaces in the block scalar header:
+      So how can you preserve the spaces in the first line? By specifying the
+      number of indentation spaces in the block scalar header:
 
     - yaml: |
           implicit: | # indentation is 1
@@ -686,13 +698,13 @@ source:
     - |
       A special note about the Document Headers and Footers.
     - |
-      In YAML, `---<space>` or `---<linebreak>` at the beginning of a line explicitly
-      starts the document.
+      In YAML, `---<space>` or `---<linebreak>` at the beginning of a line
+      explicitly starts the document.
     - |
       `...<space>` or `...<linebreak>` ends a document.
     - |
-      Even inside of Block Scalars or Quoted Scalars they still have their special
-      meaning.
+      Even inside of Block Scalars or Quoted Scalars they still have their
+      special meaning.
     - |
       If your YAML document consistes of only one string at the top level, you
       should still indent it, because otherwise it might break your content if

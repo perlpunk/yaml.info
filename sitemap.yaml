@@ -6,13 +6,13 @@ top:
   - quote: Quoting
   - schema: Schema
   - bestpractices: Best Practices
-#  - versions: Versions
-#  - documents: Documents
+  # - versions: Versions
+  # - documents: Documents
 - libraries:
   - index: Libraries
   - dev: Developers
   - repology: Repology
-#- about: About
+# - about: About
 
 header: |
   <!DOCTYPE html>

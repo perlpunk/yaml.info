@@ -97,31 +97,30 @@ source:
         - &Valid-anchor1 simple
 
 # TODO
-#http://matrix.yaml.io/details/7Z25.html#c-libyaml-event
+# http://matrix.yaml.io/details/7Z25.html#c-libyaml-event
 # Bare document after ...
-    #---
-    #scalar1
-    #...
-    #key: value
-#http://matrix.yaml.io/details/K3WX.html#c-libyaml-event
-#http://matrix.yaml.io/details/5MUD.html#c-libyaml-event
-#http://matrix.yaml.io/details/5T43.html#c-libyaml-event
-#http://matrix.yaml.io/details/QT73.html#c-libyaml-event
-#http://matrix.yaml.io/details/HWV9.html#c-libyaml-event
-#http://matrix.yaml.io/details/4MUZ.html#c-libyaml-event
-#http://matrix.yaml.io/details/9SA2.html#c-libyaml-event
-#http://matrix.yaml.io/details/NJ66.html#c-libyaml-event
-#http://matrix.yaml.io/details/JR7V.html#c-libyaml-event
-#http://matrix.yaml.io/details/A2M4.html#c-libyaml-event
-#http://matrix.yaml.io/details/6BCT.html#c-libyaml-event
-#http://matrix.yaml.io/details/DBG4.html#c-libyaml-event
-#http://matrix.yaml.io/details/WZ62.html#c-libyaml-event
-#http://matrix.yaml.io/details/R4YG.html#c-libyaml-event
-#http://matrix.yaml.io/details/M7A3.html#c-libyaml-event
-#http://matrix.yaml.io/details/UT92.html#c-libyaml-event
-#http://matrix.yaml.io/details/W4TN.html#c-libyaml-event
-#http://matrix.yaml.io/details/Q5MG.html#c-libyaml-event
-#http://matrix.yaml.io/details/FP8R.html#c-libyaml-event
-#http://matrix.yaml.io/details/DK3J.html#c-libyaml-event
-#
+#    ---
+#    scalar1
+#    ...
+#    key: value
+# http://matrix.yaml.io/details/K3WX.html#c-libyaml-event
+# http://matrix.yaml.io/details/5MUD.html#c-libyaml-event
+# http://matrix.yaml.io/details/5T43.html#c-libyaml-event
+# http://matrix.yaml.io/details/QT73.html#c-libyaml-event
+# http://matrix.yaml.io/details/HWV9.html#c-libyaml-event
+# http://matrix.yaml.io/details/4MUZ.html#c-libyaml-event
+# http://matrix.yaml.io/details/9SA2.html#c-libyaml-event
+# http://matrix.yaml.io/details/NJ66.html#c-libyaml-event
+# http://matrix.yaml.io/details/JR7V.html#c-libyaml-event
+# http://matrix.yaml.io/details/A2M4.html#c-libyaml-event
+# http://matrix.yaml.io/details/6BCT.html#c-libyaml-event
+# http://matrix.yaml.io/details/DBG4.html#c-libyaml-event
+# http://matrix.yaml.io/details/WZ62.html#c-libyaml-event
+# http://matrix.yaml.io/details/R4YG.html#c-libyaml-event
+# http://matrix.yaml.io/details/M7A3.html#c-libyaml-event
+# http://matrix.yaml.io/details/UT92.html#c-libyaml-event
+# http://matrix.yaml.io/details/W4TN.html#c-libyaml-event
+# http://matrix.yaml.io/details/Q5MG.html#c-libyaml-event
+# http://matrix.yaml.io/details/FP8R.html#c-libyaml-event
+# http://matrix.yaml.io/details/DK3J.html#c-libyaml-event
 

@@ -1,0 +1,20 @@
+---
+name: linux
+
+on:    # yamllint disable rule:truthy
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: env | sort
+    - run: sudo apt-get install -y yamllint
+    - run: yamllint --version
+    - run: make lint
+
