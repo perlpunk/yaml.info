@@ -13,9 +13,9 @@ source:
     title: What is YAML?
     content:
     - |
-      YAML is a serialization language.
+      YAML is a computer data serialization language.
     - |
-      A YAML document represents a native data structure in human readable form.
+      A YAML document represents a computer program's native data structure in a human readable text form.
       A node in a YAML document can have three basic data types:
     - |
       <ul>
