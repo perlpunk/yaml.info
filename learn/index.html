@@ -24,7 +24,8 @@
 <ul><li><a id="link_tutorial" href="#tutorial">Tutorial</a></li>
 <ul><li><a id="link_invoice" href="#invoice">Invoice</a></li>
 <li><a id="link_config" href="#config">Configuration Management</a></li>
-</ul></ul><a class="top" href="../learn/quote.html">Quoting</a>
+</ul></ul><a class="top" href="../learn/document.html">Documents</a>
+<a class="top" href="../learn/quote.html">Quoting</a>
 <a class="top" href="../learn/schema.html">Schema</a>
 <a class="top" href="../learn/bestpractices.html">Best Practices</a>
 
@@ -41,8 +42,9 @@ Atomic data types like strings, numbers, booleans and null</li>
 <li><a class="topic">Sequence</a><br>
 A list of nodes</li>
 <li><a class="topic">Mapping</a></a><br>
-A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or Objects.<br>
-Unlike in many programming languages, a key can be more than just a string.<br>
+A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or
+Objects.<br> Unlike in many programming languages, a key can be more than
+just a string.<br>
 It can be a sequence or mapping itself.</li>
 </ul>
 </p><p>On top of that, YAML allows to serialize all other data types and classes:
@@ -80,11 +82,11 @@ Each Key/Value pair is on its own line.
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
-</span></pre></div><p>The <span class="code">---</span> is a explicit <a class="topic">Document</a> Start.
+</span></pre></div><p>The <span class="code">---</span> is explicity starting a <a class="topic">Document</a>.
 </p><p>It marks the following content as YAML, but it is optional.
 </p><p>It has some use cases, and it is needed when you have multiple Documents
 in one file.
-</p><p>Read more about it in the <i>(link to Document Chapter)</i>.
+</p><p>Read more about it in the <a href="document.html">Document Chapter</a>.
 </p><p><h3>Nested Mappings</h3>
 </p><p>Now we replace the <span class="code">address</span> string with another mapping. In that case the
 colon is followed by a linebreak. Mapping values that are not scalars
@@ -116,14 +118,15 @@ least one space. The typical indentation is two spaces.
 </span><span class="plainkey">zip</span><span class="colon">:</span><span class="default"> </span><span class="default">12345</span><span class="eol">
 </span><span class="plainkey">city</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
 </span></pre></div><p><h3>Sequence</h3>
-</p><p>A sequence is a list (or array) of scalars (or other sequences or mappings).<br>
-A sequence item starts with a hyphen and a space <span class="code">- </span>.<br>
+</p><p>A sequence is a list (or array) of scalars (or other sequences or
+mappings).<br> A sequence item starts with a hyphen and a space <span class="code">- </span>.<br>
 Here is the list of
 YAML inventors:
 </p><div class="yaml codebox"><pre><span class="dash">-</span><span class="default"> </span><span class="default">Oren Ben-Kiki</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="default">Clark Evans</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="default">Ingy d&ouml;t Net</span><span class="eol">
-</span></pre></div><p>Now back to our invoice; we map a list of scalars to the key <span class="code">order items</span>.
+</span></pre></div><p>Now back to our invoice.<br>
+We map a list of scalars to the key <span class="code">order items</span>.
 </p><p>The sequence must start on the next line:
 </p><div class="yaml codebox"><pre><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">

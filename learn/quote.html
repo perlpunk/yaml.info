@@ -21,6 +21,7 @@
 </div>
 <div id="sidenav" class=""><p class="spacer"></p>
 <a class="top" href="../learn/index.html">Learn</a>
+<a class="top" href="../learn/document.html">Documents</a>
 <a class="top active" href="../learn/quote.html">Quoting</a>
 <ul><li><a id="link_tldr" href="#tldr">Quick comparison - tl;dr</a></li>
 <li><a id="link_flow" href="#flow">Flow Scalars</a></li>
@@ -160,7 +161,8 @@ meaning. See the next section for cases where you have to quote a string.
 </span><span class="plainkey">a url</span><span class="colon">:</span><span class="default"> </span><span class="default">http://example.org/</span><span class="eol">
 </span></pre></div><p>You can use literal tabs, backslashes and unicode characters:
 </p><div class="yaml codebox"><pre><span class="plainkey">a string</span><span class="colon">:</span><span class="default"> </span><span class="default">with a real</span><span class="tab">	</span><span class="default"> tab character and a \ backslash</span><span class="eol">
-</span></pre></div><p>But note that literal tabs are discouraged, as there are edge cases, and they are usually not easy to see.
+</span></pre></div><p>But note that literal tabs are discouraged, as there are edge cases, and
+they are usually not easy to see.
 </p><p>You can not use escapes sequences like <span class="code">\n</span> or <span class="code">\t</span> here, it will be returned
 literally as "Backslash + n" / "Backslash + t".
 </p><p><p>A comment will end such a plain scalar, so the following example is
@@ -512,8 +514,8 @@ you want to preserve:
 </span></pre></div><p>All continuation lines in a block scalar have to be indented at least as much as
 the first line.
 
-So how can you preserve the spaces in the first line? By specifying the number
-of indentation spaces in the block scalar header:
+So how can you preserve the spaces in the first line? By specifying the
+number of indentation spaces in the block scalar header:
 </p><div class="yaml codebox"><pre><span class="plainkey">implicit</span><span class="colon">:</span><span class="default"> </span><span class="literal">|</span><span class="eol"> # indentation is 1
 </span><span class="indent"> </span><span class="block_scalar_content">line</span><span class="eol">
 </span><span class="eol">
@@ -534,11 +536,11 @@ You can also combine the indicators, and the order does not matter:
 <div class="section" id="document">
 <h2>Document Header and Footer</h2>
 <p>A special note about the Document Headers and Footers.
-</p><p>In YAML, <span class="code">---&lt;space&gt;</span> or <span class="code">---&lt;linebreak&gt;</span> at the beginning of a line explicitly
-starts the document.
+</p><p>In YAML, <span class="code">---&lt;space&gt;</span> or <span class="code">---&lt;linebreak&gt;</span> at the beginning of a line
+explicitly starts the document.
 </p><p><span class="code">...&lt;space&gt;</span> or <span class="code">...&lt;linebreak&gt;</span> ends a document.
-</p><p>Even inside of Block Scalars or Quoted Scalars they still have their special
-meaning.
+</p><p>Even inside of Block Scalars or Quoted Scalars they still have their
+special meaning.
 </p><p>If your YAML document consistes of only one string at the top level, you
 should still indent it, because otherwise it might break your content if
 it contains <span class="code">---</span> or <span class="code">...</span>.

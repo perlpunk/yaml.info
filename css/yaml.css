@@ -6,8 +6,8 @@ span.indent { background-color: #e8e8e8; }
 span.dash { font-weight: bold; color: magenta; }
 span.colon { font-weight: bold; color: magenta; }
 span.question { font-weight: bold; color: magenta; }
-span.yaml_directive { color: cyan; }
-span.tag_directive { color: cyan; }
+span.yaml_directive { color: #00cccc; }
+span.tag_directive { color: #00cccc; }
 span.tag { color: blue; }
 span.comment { color: #888; }
 span.eol { color: #888; }
@@ -18,7 +18,7 @@ span.doublequoted { color: #009900; }
 span.literal { font-weight: bold; color: magenta; }
 span.folded { font-weight: bold; color: magenta; }
 span.doc_start { background-color: lightblue; font-weight: bold; }
-span.doc_end { background-color: lightblue; font-weight: bold; }
+span.doc_end { background-color: lightgrey; font-weight: bold; }
 span.block_scalar_content { color: #cc7722; }
 span.tab { background-color: lightblue; }
 span.error { background-color: #ff8888; }

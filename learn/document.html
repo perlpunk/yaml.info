@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Documents</title>
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/yaml.css">
+<link rel="stylesheet" type="text/css" href="../css/ansicolor.css">
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/main.js"></script>
+
+</head>
+<body>
+
+<div id="topnav">
+<a class="home" href="../index.html">!yaml.info</a>
+<a class="active" href="../learn/index.html">Learn</a>
+<a  href="../libraries/index.html">Libraries</a>
+
+<a class="source" href="https://github.com/perlpunk/yaml.info">Contribute <img src="../img/GitHub-Mark-Light-32px.png"></a>
+</div>
+<div id="sidenav" class=""><p class="spacer"></p>
+<a class="top" href="../learn/index.html">Learn</a>
+<a class="top active" href="../learn/document.html">Documents</a>
+<ul><li><a id="link_start" href="#start">Document Start</a></li>
+<li><a id="link_end" href="#end">Document End</a></li>
+<li><a id="link_directive" href="#directive">Directives</a></li>
+</ul><a class="top" href="../learn/quote.html">Quoting</a>
+<a class="top" href="../learn/schema.html">Schema</a>
+<a class="top" href="../learn/bestpractices.html">Best Practices</a>
+
+</div>
+<div class="main main-">
+<div class="section" id="intro">
+<h2>Documents</h2>
+<p>A YAML file or Stream can contain multiple <a class="topic">Documents</a>.
+</p><p>YAML Libraries typically have functions like <span class="code">load</span> and <span class="code">load_all</span> to read
+only the first or all documents.
+</p></div>
+<div class="section" id="start">
+<h2>Document Start</h2>
+<p>For the first document, the Document start marker is optional, but it is
+also a way to mark something as YAML explicitly:
+</p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol">
+</span><span class="eol"># with optional document start marker
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span></pre></div><p>If a file contains multiple documents, they must be separated with the
+document start marker:
+</p><div class="yaml codebox"><pre><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314160</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314161</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span></pre></div><p>The Document Start is usually on its own line. Mappings or Sequences must
+start on the next line.
+</p><p>If a document's top level node is a scalar, then it can also start on the same
+line:
+</p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="default"> </span><span class="literal">|</span><span class="eol"> # Top Level Block Scalar
+</span><span class="indent">  </span><span class="block_scalar_content">line 1</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 2</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 3</span><span class="eol">
+</span><span class="doc_start">---</span><span class="default"> </span><span class="default">top</span><span class="eol">
+</span><span class="indent">  </span><span class="default">level</span><span class="eol">
+</span><span class="indent">  </span><span class="default">plain scalar</span><span class="eol">
+</span></pre></div><p>In case of top level scalars, it is recommended to always use the document
+start marker, and always indent the content. Some libraries don't accept
+a top level scalar which is not indented.
+</p></div>
+<div class="section" id="end">
+<h2>Document End</h2>
+<p>There is also the Document End Marker <span class="code">...</span>.
+</p><p>It is also optional, but useful or recommended in some cases.
+</p><p><h3>Open Ended Block Scalars</h3>
+</p><p>Sometimes <a class="topic">Block Scalars</a> can have trailing newlines:
+</p><div class="yaml codebox"><pre><span class="plainkey">block</span><span class="colon">:</span><span class="default"> </span><span class="literal">|</span><span class="default">+</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 1</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 2</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 3</span><span class="eol">
+</span><span class="eol">
+</span><span class="eol">
+</span><span class="plainkey">more</span><span class="colon">:</span><span class="default"> </span><span class="default">content</span><span class="eol">
+</span></pre></div><p>In the previous example, the value for <span class="code">block</span> will have three trailing
+linebreaks.
+</p><p>In the following example, it also has three linebreaks:
+</p><div class="yaml codebox"><pre><span class="plainkey">block</span><span class="colon">:</span><span class="default"> </span><span class="literal">|</span><span class="default">+</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 1</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 2</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 3</span><span class="eol">
+</span><span class="eol">
+</span><span class="eol">
+</span></pre></div><p>The problem here is, if this is the last item in the file, it might easily happen
+that someone editing the file accidentally adds another line at the end or
+saves the file without the last line ending.
+</p><p>In these cases, it's recommended to explicitly end the document:
+</p><div class="yaml codebox"><pre><span class="plainkey">block</span><span class="colon">:</span><span class="default"> </span><span class="literal">|</span><span class="default">+</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 1</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 2</span><span class="eol">
+</span><span class="indent">  </span><span class="block_scalar_content">line 3</span><span class="eol">
+</span><span class="eol">
+</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span></pre></div><p><h3>Streaming Context</h3></p><p>When YAML is used in a Stream, for example over network, it might be
+important to tell the receiver that the document has ended.
+</p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314160</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314161</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span></pre></div><p><b>Theoretically</b> it's also possible to only use the Document End Marker
+to separate Documents:
+</p><div class="yaml codebox"><pre><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314160</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314161</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span></pre></div><p>However, that's not supported by all libraries. To be safe, always use the
+Document start marker when using multiple documents.
+</p></div>
+<div class="section" id="directive">
+<h2>Directives</h2>
+<p>YAML has two <a class="topic">Directives</a>:
+<ul>
+<li>YAML Version Directive</li>
+<li>YAML Tag Directive</li>
+</ul>
+</p><p><h3>YAML Version Directive</h3></p><p>The Version directive is used to tell the YAML processor which version
+of YAML the document is written in.
+</p><div class="yaml codebox"><pre><span class="yaml_directive">%YAML 1.2</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">a</span><span class="colon">:</span><span class="default"> </span><span class="default">mapping</span><span class="eol">
+</span></pre></div><p>If you use a directive, the Document Start Marker must always follow.
+In the YAML Specification, the Document Start is actually called "Directives
+End Marker".
+</p><p>In YAML 1.2, a directive is <b>only</b> applied to the following document,
+not to the whole file or stream.
+</p><p>So if you have multiple documents, you need both the Document Start and End
+Markers:
+</p><div class="yaml codebox"><pre><span class="yaml_directive">%YAML 1.2</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span><span class="yaml_directive">%YAML 1.2</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314160</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
+</span><span class="yaml_directive">%YAML 1.2</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314161</span><span class="eol">
+</span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
+</span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span></pre></div><p><h3>YAML Tag Directive</h3></p><p>Tag Directives are rarely used.
+</p><p>They provide a way to create shorthand tags for custom processing.
+</p><p>An example is the <a href="https://docs.unity3d.com/Manual/YAMLSceneExample.html">Unity3d</a>
+application (which is using YAML 1.1).
+</p><div class="yaml codebox"><pre><span class="yaml_directive">%YAML 1.1</span><span class="eol">
+</span><span class="tag_directive">%TAG !u! tag:unity3d.com,2011:</span><span class="eol">
+</span><span class="doc_start">---</span><span class="default"> </span><span class="tag">!u!header</span><span class="eol">
+</span><span class="plainkey">SerializedFile</span><span class="colon">:</span><span class="eol">
+</span><span class="eol"># ...
+</span></pre></div><p>It maps tags like <span class="code">!u!header</span> to <span class="code">tag:unity3d.com,2011:header</span>.
+</p><p>There is only <b>one</b> tag directive which always used by default, so you
+don't have to specify this in a YAML file:
+</p><div class="yaml codebox"><pre><span class="tag_directive">%TAG !! tag:yaml.org,2002:</span><span class="eol">
+</span><span class="doc_start">---</span><span class="eol">
+</span><span class="eol"># ...
+</span></pre></div><p>This allows to use the standard YAML tags like <span class="code">!!int</span> or <span class="code">!!bool</span> in their
+short form.
+</p><p>But the standard YAML tags are rarely needed. Read more about Tags and
+Schema in the <a href="schema.html">Schema Chapter</a>.
+</p></div>
+
+<p class="source">
+<a href="https://github.com/perlpunk/yaml.info/blob/master/content/learn/document.yaml">Page Source</a>
+</p>
+</div>
+<div id="footer">
+<a href="../topics.html">Index</a>
+<p>
+<a href="https://github.com/perlpunk/yaml.info/blob/master/LICENSE">© 2020 Tina Müller</a>
+<a href="https://github.com/perlpunk/yaml.info">https://github.com/perlpunk/yaml.info</a>
+</p>
+</div>
+</body>
+</html>
+
