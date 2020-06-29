@@ -81,14 +81,14 @@ sections:
       address: North Pole
 
   - |
-    The `---` is a explicit [Document](#topic:document) Start.
+    The `---` is explicity starting a [Document](#topic:document).
   - |
     It marks the following content as YAML, but it is optional.
   - |
     It has some use cases, and it is needed when you have multiple Documents
     in one file.
   - |
-    Read more about it in the <i>(link to Document Chapter)</i>.
+    Read more about it in the [Document Chapter](document.html).
 
   - |
     <h3>Nested Mappings</h3>

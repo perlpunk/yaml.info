@@ -3,11 +3,11 @@ top:
 - index: '!yaml.info'
 - learn:
   - index: Learn
+  - document: Documents
   - quote: Quoting
   - schema: Schema
   - bestpractices: Best Practices
   # - versions: Versions
-  # - documents: Documents
 - libraries:
   - index: Libraries
   - dev: Developers

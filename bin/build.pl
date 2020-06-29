@@ -28,7 +28,7 @@ my $sitemap = $yp->load_file("$Bin/../sitemap.yaml");
 my $libraries = $yp->load_file("$Bin/../libraries.yaml");
 
 my @pages = qw(
-  index learn/index learn/quote learn/bestpractices learn/schema
+  index learn/index learn/quote learn/bestpractices learn/schema learn/document
   libraries/index libraries/dev libraries/repology
   topics
 );

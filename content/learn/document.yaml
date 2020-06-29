@@ -1,0 +1,227 @@
+---
+title: Documents
+links:
+- start: Document Start
+- end: Document End
+- directive: Directives
+
+sections:
+- name: intro
+  title: Documents
+  content:
+  - |
+    A YAML file or Stream can contain multiple [Documents](#topic:document).
+  - |
+    YAML Libraries typically have functions like `load` and `load_all` to read
+    only the first or all documents.
+
+- name: start
+  title: Document Start
+  content:
+  - |
+    For the first document, the Document start marker is optional, but it is
+    also a way to mark something as YAML explicitly:
+  - yaml: |
+      ---
+      # with optional document start marker
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
+
+  - |
+    If a file contains multiple documents, they must be separated with the
+    document start marker:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
+      ---
+      invoice number: 314160
+      name: Santa Claus
+      address: North Pole
+      ---
+      invoice number: 314161
+      name: Santa Claus
+      address: North Pole
+  - |
+    The Document Start is usually on its own line. Mappings or Sequences must
+    start on the next line.
+  - |
+    If a document's top level node is a scalar, then it can also start on the same
+    line:
+  - yaml: |
+       --- | # Top Level Block Scalar
+         line 1
+         line 2
+         line 3
+       --- top
+         level
+         plain scalar
+  - |
+    In case of top level scalars, it is recommended to always use the document
+    start marker, and always indent the content. Some libraries don't accept
+    a top level scalar which is not indented.
+
+- name: end
+  title: Document End
+  content:
+  - |
+    There is also the Document End Marker `...`.
+  - |
+    It is also optional, but useful or recommended in some cases.
+  - |
+    <h3>Open Ended Block Scalars</h3>
+  - |
+    Sometimes [Block Scalars](#topic:blockscalar) can have trailing newlines:
+  - yaml: |
+      block: |+
+        line 1
+        line 2
+        line 3
+
+
+      more: content
+  - |
+    In the previous example, the value for `block` will have three trailing
+    linebreaks.
+  - |
+    In the following example, it also has three linebreaks:
+
+  - yaml: |+
+      block: |+
+        line 1
+        line 2
+        line 3
+
+
+  - |
+    The problem here is, if this is the last item in the file, it might easily happen
+    that someone editing the file accidentally adds another line at the end or
+    saves the file without the last line ending.
+  - |
+    In these cases, it's recommended to explicitly end the document:
+  - yaml: |+
+      block: |+
+        line 1
+        line 2
+        line 3
+
+
+      ...
+  - <h3>Streaming Context</h3>
+  - |
+    When YAML is used in a Stream, for example over network, it might be
+    important to tell the receiver that the document has ended.
+
+  - yaml: |
+      ---
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
+      ...
+      ---
+      invoice number: 314160
+      name: Santa Claus
+      address: North Pole
+      ...
+      ---
+      invoice number: 314161
+      name: Santa Claus
+      address: North Pole
+
+  - |
+    <b>Theoretically</b> it's also possible to only use the Document End Marker
+    to separate Documents:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
+      ...
+      invoice number: 314160
+      name: Santa Claus
+      address: North Pole
+      ...
+      invoice number: 314161
+      name: Santa Claus
+      address: North Pole
+
+  - |
+    However, that's not supported by all libraries. To be safe, always use the
+    Document start marker when using multiple documents.
+
+- name: directive
+  title: Directives
+  content:
+  - |
+    YAML has two [Directives](#topic:directive):
+    <ul>
+    <li>YAML Version Directive</li>
+    <li>YAML Tag Directive</li>
+    </ul>
+  - <h3>YAML Version Directive</h3>
+  - |
+    The Version directive is used to tell the YAML processor which version
+    of YAML the document is written in.
+  - yaml: |
+      %YAML 1.2
+      ---
+      a: mapping
+
+  - |
+    If you use a directive, the Document Start Marker must always follow.
+    In the YAML Specification, the Document Start is actually called "Directives
+    End Marker".
+  - |
+    In YAML 1.2, a directive is <b>only</b> applied to the following document,
+    not to the whole file or stream.
+  - |
+    So if you have multiple documents, you need both the Document Start and End
+    Markers:
+  - yaml: |
+      %YAML 1.2
+      ---
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
+      ...
+      %YAML 1.2
+      ---
+      invoice number: 314160
+      name: Santa Claus
+      address: North Pole
+      ...
+      %YAML 1.2
+      ---
+      invoice number: 314161
+      name: Santa Claus
+      address: North Pole
+
+  - <h3>YAML Tag Directive</h3>
+  - |
+    Tag Directives are rarely used.
+  - |
+    They provide a way to create shorthand tags for custom processing.
+  - |
+    An example is the [Unity3d](https://docs.unity3d.com/Manual/YAMLSceneExample.html)
+    application (which is using YAML 1.1).
+  - yaml: |
+      %YAML 1.1
+      %TAG !u! tag:unity3d.com,2011:
+      --- !u!header
+      SerializedFile:
+      # ...
+  - |
+    It maps tags like `!u!header` to `tag:unity3d.com,2011:header`.
+  - |
+    There is only <b>one</b> tag directive which always used by default, so you
+    don't have to specify this in a YAML file:
+  - yaml: |
+      %TAG !! tag:yaml.org,2002:
+      ---
+      # ...
+  - |
+    This allows to use the standard YAML tags like `!!int` or `!!bool` in their
+    short form.
+  - |
+    But the standard YAML tags are rarely needed. Read more about Tags and
+    Schema in the [Schema Chapter](schema.html).
