@@ -1,409 +1,405 @@
 ---
 title: Learn - yaml.info
-sections:
+links:
 - tutorial:
     title: Tutorial
     children:
     - invoice: Invoice
     - config: Configuration Management
 
-source:
-- section:
-    name: intro
-    title: What is YAML?
-    content:
-    - |
-      YAML is a computer data serialization language.
-    - |
-      A YAML document represents a computer program's native data structure in a human readable text form.
-      A node in a YAML document can have three basic data types:
-    - |
-      <ul>
-      <li>[Scalar](#topic:scalar)<br>
-      Atomic data types like strings, numbers, booleans and null</li>
-      <li>[Sequence](#topic:sequence)<br>
-      A list of nodes</li>
-      <li>[Mapping](#topic:mapping)</a><br>
-      A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or
-      Objects.<br> Unlike in many programming languages, a key can be more than
-      just a string.<br>
-      It can be a sequence or mapping itself.</li>
-      </ul>
-    - |
-      On top of that, YAML allows to serialize all other data types and classes:
-    - |
-      <ul>
-      <li>[Alias and Anchor](#topic:alias)<br>
-      For serializing References / Pointers, including circular references.
-      </li>
-      <li>[Tag](#topic:tag)<br>
-      With Tags it's possible to define custom types/classes.<br>
-      For example, in many languages a Regular Expression is a builtin data type
-      or object.<br>
-      Some languages have only arrays, which are represented by the basic
-      sequence type.<br>
-      But some have tuples, which needs a custom tag.
-      </li>
-      </ul>
-    - Additionally to the indentation based [Block Style](#topic:block)
-      there is a more compact [Flow Style](#topic:flowstyle) syntax.
-    - One YAML File (or Stream) can consist of more than one
-      [Document](#topic:document).
+sections:
+- name: intro
+  title: What is YAML?
+  content:
+  - |
+    YAML is a computer data serialization language.
+  - |
+    A YAML document represents a computer program's native data structure in a human readable text form.
+    A node in a YAML document can have three basic data types:
+  - |
+    <ul>
+    <li>[Scalar](#topic:scalar)<br>
+    Atomic data types like strings, numbers, booleans and null</li>
+    <li>[Sequence](#topic:sequence)<br>
+    A list of nodes</li>
+    <li>[Mapping](#topic:mapping)</a><br>
+    A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or
+    Objects.<br> Unlike in many programming languages, a key can be more than
+    just a string.<br>
+    It can be a sequence or mapping itself.</li>
+    </ul>
+  - |
+    On top of that, YAML allows to serialize all other data types and classes:
+  - |
+    <ul>
+    <li>[Alias and Anchor](#topic:alias)<br>
+    For serializing References / Pointers, including circular references.
+    </li>
+    <li>[Tag](#topic:tag)<br>
+    With Tags it's possible to define custom types/classes.<br>
+    For example, in many languages a Regular Expression is a builtin data type
+    or object.<br>
+    Some languages have only arrays, which are represented by the basic
+    sequence type.<br>
+    But some have tuples, which needs a custom tag.
+    </li>
+    </ul>
+  - Additionally to the indentation based [Block Style](#topic:block)
+    there is a more compact [Flow Style](#topic:flowstyle) syntax.
+  - One YAML File (or Stream) can consist of more than one
+    [Document](#topic:document).
 
-- section:
-    name: tutorial
-    title: Tutorial
-    content:
-    - |
-      The following examples will introduce you with YAML syntax elements step
-      by step.
+- name: tutorial
+  title: Tutorial
+  content:
+  - |
+    The following examples will introduce you with YAML syntax elements step
+    by step.
 
-- section:
-    name: invoice
-    title: Invoice
-    content:
-    - Let's write an invoice.
-    - It has a number, a name and an address, order items and more.
-    - |
-      <h3>Mapping</h3>
-      The most common top level data type are mappings. A mapping maps values
-      to keys.<br>
-      Keys and values are separated with a colon and a space `: `.<br>
-      Each Key/Value pair is on its own line.
+- name: invoice
+  title: Invoice
+  content:
+  - Let's write an invoice.
+  - It has a number, a name and an address, order items and more.
+  - |
+    <h3>Mapping</h3>
+    The most common top level data type are mappings. A mapping maps values
+    to keys.<br>
+    Keys and values are separated with a colon and a space `: `.<br>
+    Each Key/Value pair is on its own line.
 
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
-        address: North Pole
-    - |
-      An alternative way to write it:
-    - yaml: |
-        ---
-        invoice number: 314159
-        name: Santa Claus
-        address: North Pole
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
+  - |
+    An alternative way to write it:
+  - yaml: |
+      ---
+      invoice number: 314159
+      name: Santa Claus
+      address: North Pole
 
-    - |
-      The `---` is a explicit [Document](#topic:document) Start.
-    - |
-      It marks the following content as YAML, but it is optional.
-    - |
-      It has some use cases, and it is needed when you have multiple Documents
-      in one file.
-    - |
-      Read more about it in the <i>(link to Document Chapter)</i>.
+  - |
+    The `---` is a explicit [Document](#topic:document) Start.
+  - |
+    It marks the following content as YAML, but it is optional.
+  - |
+    It has some use cases, and it is needed when you have multiple Documents
+    in one file.
+  - |
+    Read more about it in the <i>(link to Document Chapter)</i>.
 
-    - |
-      <h3>Nested Mappings</h3>
-    - |
-      Now we replace the `address` string with another mapping. In that case the
-      colon is followed by a linebreak. Mapping values that are not scalars
-      must always start on a new line.
-    - |
-      Nested items must always be indented more then the parent node, with at
-      least one space. The typical indentation is two spaces.
-    - |
-      Tabs are forbidden as indentation.
+  - |
+    <h3>Nested Mappings</h3>
+  - |
+    Now we replace the `address` string with another mapping. In that case the
+    colon is followed by a linebreak. Mapping values that are not scalars
+    must always start on a new line.
+  - |
+    Nested items must always be indented more then the parent node, with at
+    least one space. The typical indentation is two spaces.
+  - |
+    Tabs are forbidden as indentation.
 
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
 
-        address:
-          street: Santa Claus Lane
-          zip: 12345
-          city: North Pole
-    - |
-      Don't forget the indentation. If you write it like this:
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
-
-        address:
+      address:
         street: Santa Claus Lane
         zip: 12345
         city: North Pole
-    - |
-      ... then it will actually mean this:
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
+  - |
+    Don't forget the indentation. If you write it like this:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
 
-        address: null
+      address:
+      street: Santa Claus Lane
+      zip: 12345
+      city: North Pole
+  - |
+    ... then it will actually mean this:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
+
+      address: null
+      street: Santa Claus Lane
+      zip: 12345
+      city: North Pole
+
+  - |
+    <h3>Sequence</h3>
+  - |
+    A sequence is a list (or array) of scalars (or other sequences or
+    mappings).<br> A sequence item starts with a hyphen and a space `- `.<br>
+    Here is the list of
+    YAML inventors:
+  - yaml: |
+      - Oren Ben-Kiki
+      - Clark Evans
+      - Ingy döt Net
+
+  - |
+    Now back to our invoice.<br>
+    We map a list of scalars to the key `order items`.
+  - |
+    The sequence must start on the next line:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
+      address:
         street: Santa Claus Lane
         zip: 12345
         city: North Pole
 
-    - |
-      <h3>Sequence</h3>
-    - |
-      A sequence is a list (or array) of scalars (or other sequences or
-      mappings).<br> A sequence item starts with a hyphen and a space `- `.<br>
-      Here is the list of
-      YAML inventors:
-    - yaml: |
-        - Oren Ben-Kiki
-        - Clark Evans
-        - Ingy döt Net
-
-    - |
-      Now back to our invoice.<br>
-      We map a list of scalars to the key `order items`.
-    - |
-      The sequence must start on the next line:
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
-        address:
-          street: Santa Claus Lane
-          zip: 12345
-          city: North Pole
-
-        order items:
-          - Sled
-          - Wrapping Paper
-
-    - |
-      Because the `- ` counts as indentation, you can also write it like this:
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
-        address:
-          street: Santa Claus Lane
-          zip: 12345
-          city: North Pole
-
-        order items:
+      order items:
         - Sled
         - Wrapping Paper
 
-    - <h3>Nested Sequences</h3>
-    - |
-      You can also nest sequences. The typical example is a List of Dice Rolls.
-    - |
-      The nested sequence items can follow directly on the same line:
-    - yaml: |
-        ---
-        - - 2
-          - 3
-        - - 3
-          - 6
+  - |
+    Because the `- ` counts as indentation, you can also write it like this:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
+      address:
+        street: Santa Claus Lane
+        zip: 12345
+        city: North Pole
 
-    - |
-      YAML allows to write that in a more compact way, the [Flow
-      Style](#topic:flowstyle):
-    - yaml: |
-        ---
-        - [ 2, 3 ]
-        - [ 3, 6 ]
+      order items:
+      - Sled
+      - Wrapping Paper
 
-    - |
-      <i>Link to Flow Style Chapter</i>
+  - <h3>Nested Sequences</h3>
+  - |
+    You can also nest sequences. The typical example is a List of Dice Rolls.
+  - |
+    The nested sequence items can follow directly on the same line:
+  - yaml: |
+      ---
+      - - 2
+        - 3
+      - - 3
+        - 6
 
-    - <h3>Aliases / Anchors</h3>
-    - |
-      Let's add a billing address to the invoice.
-    - |
-      In our case it is the same as the shipping address.
-      We rename `address` to `shipping address` and add `billing address`:
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
+  - |
+    YAML allows to write that in a more compact way, the [Flow
+    Style](#topic:flowstyle):
+  - yaml: |
+      ---
+      - [ 2, 3 ]
+      - [ 3, 6 ]
 
-        shipping address:
-          street: Santa Claus Lane
-          zip: 12345
-          city: North Pole
-        billing address:
-          street: Santa Claus Lane
-          zip: 12345
-          city: North Pole
+  - |
+    <i>Link to Flow Style Chapter</i>
 
-        order items:
-        - Sled
-        - Wrapping Paper
+  - <h3>Aliases / Anchors</h3>
+  - |
+    Let's add a billing address to the invoice.
+  - |
+    In our case it is the same as the shipping address.
+    We rename `address` to `shipping address` and add `billing address`:
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
 
-    - |
-      Now that's a bit wasted space. If it's the same address, you don't need
-      to repeat it. Use an [Alias](#topic:alias).
-    - |
-      In the native data structure of a programming language, this would be
-      a reference, pointer, or alias.
+      shipping address:
+        street: Santa Claus Lane
+        zip: 12345
+        city: North Pole
+      billing address:
+        street: Santa Claus Lane
+        zip: 12345
+        city: North Pole
 
-    - |
-      Before an [Alias](#topic:alias) can be used, it has to be created
-      with an [Anchor](#topic:alias):
+      order items:
+      - Sled
+      - Wrapping Paper
 
-    - yaml: |
-        invoice number: 314159
-        name: Santa Claus
+  - |
+    Now that's a bit wasted space. If it's the same address, you don't need
+    to repeat it. Use an [Alias](#topic:alias).
+  - |
+    In the native data structure of a programming language, this would be
+    a reference, pointer, or alias.
 
-        shipping address: &address     #   Anchor
-          street: Santa Claus Lane     # ┐
-          zip: 12345                   # │ Anchor content
-          city: North Pole             # ┘
-        billing address: *address      #   Alias
+  - |
+    Before an [Alias](#topic:alias) can be used, it has to be created
+    with an [Anchor](#topic:alias):
 
-        order items:
-        - Sled
-        - Wrapping Paper
+  - yaml: |
+      invoice number: 314159
+      name: Santa Claus
 
-    - |
-      When loaded into a native data structure, the `shipping address` and
-      `billing address` point to the same data structure.<br>
-      It depends on the capabilities of the programming language how this is
-      implemented internally.<br>
-      <i>(Link to Alias chapter)</i>
+      shipping address: &address     #   Anchor
+        street: Santa Claus Lane     # ┐
+        zip: 12345                   # │ Anchor content
+        city: North Pole             # ┘
+      billing address: *address      #   Alias
 
-- section:
-    name: config
-    title: Configuration Management
-    content:
-    - |
-      YAML is used in all kinds of applications as a configuration language.
-    - <h3>Continuous Integration</h3>
-    - |
-      One category is the configuration of Continuous Integration systems.
-    - |
-      Here is a minimal example of a [GitHub Action
-      Workflow](https://help.github.com/en/actions).
+      order items:
+      - Sled
+      - Wrapping Paper
 
-    - yaml: |
-        name: Linux
-        on: [push]    # Compact Flow Style Sequence
-        jobs:
-          build:
-            name: Run Tests
-            runs-on: ubuntu-latest
-            steps:
-            - name: Say Hello
-              run: echo hello
+  - |
+    When loaded into a native data structure, the `shipping address` and
+    `billing address` point to the same data structure.<br>
+    It depends on the capabilities of the programming language how this is
+    implemented internally.<br>
+    <i>(Link to Alias chapter)</i>
 
-    - |
-      The value for `steps` is a list of mappings. A mapping can start directly
-      on the same line as the `-`.
+- name: config
+  title: Configuration Management
+  content:
+  - |
+    YAML is used in all kinds of applications as a configuration language.
+  - <h3>Continuous Integration</h3>
+  - |
+    One category is the configuration of Continuous Integration systems.
+  - |
+    Here is a minimal example of a [GitHub Action
+    Workflow](https://help.github.com/en/actions).
 
-    - |
-      Usually a step has a `name`, which will be shown as the title when running
-      the job, and a `run`, which is a shell command, or multiple commands.
+  - yaml: |
+      name: Linux
+      on: [push]    # Compact Flow Style Sequence
+      jobs:
+        build:
+          name: Run Tests
+          runs-on: ubuntu-latest
+          steps:
+          - name: Say Hello
+            run: echo hello
 
-    - |
-      Let's add a more realistic scenario, with one step to checkout the
-      code, and one with multiple commands.
-    - |
-      If you use Double Quotes, which work like JSON strings, it looks like
-      this:
-    - yaml: |
-        steps:
-        # Plugin provided by GitHub to checkout the code
-        - uses: actions/checkout@v2
-        # Run multiple commands
-        - name: Run Tests
-          run: "./configure\nmake\nmake test\n"
-    - |
-      One of the advantages of YAML here is that this can be formatted in a way
-      that's easy to write and read with [Block Scalars](#topic:blockscalar):
-    - yaml: |
-        steps:
-        - uses: actions/checkout@v2
-        - name: Run Tests
-          run: |      # Literal Block Scalar
-            ./configure
-            make
-            make test
+  - |
+    The value for `steps` is a list of mappings. A mapping can start directly
+    on the same line as the `-`.
 
-    - |
-      The [Literal Block Scalar](#topic:blockscalar), as the name says, contains
-      the literal content of the string. Tabs and similar characters are always
-      literal. All trailing spaces will be kept.
+  - |
+    Usually a step has a `name`, which will be shown as the title when running
+    the job, and a `run`, which is a shell command, or multiple commands.
 
-    - |
-      Let's say, you have a number of longer commands that you would like to
-      break up into multiple lines for readability:
-    - yaml: |
-        steps:
-        - uses: actions/checkout@v2
-        - name: Install dependencies
-          run: >      # Folded Block Scalar
-            apt-get update
-            && apt-get install -y
-            git tig vim jq tmux tmate git-subrepo cpanminus
+  - |
+    Let's add a more realistic scenario, with one step to checkout the
+    code, and one with multiple commands.
+  - |
+    If you use Double Quotes, which work like JSON strings, it looks like
+    this:
+  - yaml: |
+      steps:
+      # Plugin provided by GitHub to checkout the code
+      - uses: actions/checkout@v2
+      # Run multiple commands
+      - name: Run Tests
+        run: "./configure\nmake\nmake test\n"
+  - |
+    One of the advantages of YAML here is that this can be formatted in a way
+    that's easy to write and read with [Block Scalars](#topic:blockscalar):
+  - yaml: |
+      steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests
+        run: |      # Literal Block Scalar
+          ./configure
+          make
+          make test
 
-            cpanm -n -l local
-            YAML::PP YAML::XS ...
+  - |
+    The [Literal Block Scalar](#topic:blockscalar), as the name says, contains
+    the literal content of the string. Tabs and similar characters are always
+    literal. All trailing spaces will be kept.
 
-    - |
-      The [Folded Block Scalar](#topic:blockscalar) is like the Literal Block
-      Scalar, but with special folding rules.
-    - |
-      Consecutive lines starting at the same indentation level will be folded
-      with spaces, and empty lines create a linebreak.
-    - |
-      Read more about [Block Scalars](#topic:blockscalar) and all other ways of
-      quoting in the [Quoting Chapter](quote.html).
+  - |
+    Let's say, you have a number of longer commands that you would like to
+    break up into multiple lines for readability:
+  - yaml: |
+      steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: >      # Folded Block Scalar
+          apt-get update
+          && apt-get install -y
+          git tig vim jq tmux tmate git-subrepo cpanminus
 
-    - <h3>Variables</h3>
-    - |
-      YAML itself has no concept of "variables" or "functions".
-    - |
-      Systems like GitHub Actions usually provide a way to access certain
-      information and environment variables with a Templating Syntax.
-    - |
-      We set up a "matrix" test to build the code with gcc and clang.
+          cpanm -n -l local
+          YAML::PP YAML::XS ...
 
-    - yaml: |
-        strategy:
-          matrix:
-            compiler: [gcc, clang]
-        steps:
-        - ...
+  - |
+    The [Folded Block Scalar](#topic:blockscalar) is like the Literal Block
+    Scalar, but with special folding rules.
+  - |
+    Consecutive lines starting at the same indentation level will be folded
+    with spaces, and empty lines create a linebreak.
+  - |
+    Read more about [Block Scalars](#topic:blockscalar) and all other ways of
+    quoting in the [Quoting Chapter](quote.html).
 
-    - |
-      The `strategy.matrix` entry will create <b>two</b> jobs instead of one,
-      providing the `compiler` in a "context" item that we can pass as an
-      environment variable to the step:
+  - <h3>Variables</h3>
+  - |
+    YAML itself has no concept of "variables" or "functions".
+  - |
+    Systems like GitHub Actions usually provide a way to access certain
+    information and environment variables with a Templating Syntax.
+  - |
+    We set up a "matrix" test to build the code with gcc and clang.
 
-    - yaml: |
-        strategy:
-          matrix:
-            compiler: [gcc, clang]
-        steps:
-        - uses: actions/checkout@v2
-        - name: Run Tests
-          env:
-            CC: ${{ matrix.compiler }}
-          run: |
-            ./configure
-            make
-            make test
-    - |
-      This sets the environment variable `CC` to `gcc` or `clang`, respectively.
+  - yaml: |
+      strategy:
+        matrix:
+          compiler: [gcc, clang]
+      steps:
+      - ...
 
-    - |
-      The `${{ matrix.compiler }}` syntax is not a special YAML syntax.<br>
-      It is a simple plain scalar that could also have been written in quotes:
-    - yaml: |
-          env:
-            CC: '${{ matrix.compiler }}'
-    - |
-      It's the GitHub Action application that recognizes such variables and
-      replaces them with their content at runtime.
+  - |
+    The `strategy.matrix` entry will create <b>two</b> jobs instead of one,
+    providing the `compiler` in a "context" item that we can pass as an
+    environment variable to the step:
 
-    - |
-      Such variables can look different, depending on the application.
-    - |
-      For example, [Ansible](https://www.ansible.com/) is using the
-      [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templating engine,
-      where variables look like this:
+  - yaml: |
+      strategy:
+        matrix:
+          compiler: [gcc, clang]
+      steps:
+      - uses: actions/checkout@v2
+      - name: Run Tests
+        env:
+          CC: ${{ matrix.compiler }}
+        run: |
+          ./configure
+          make
+          make test
+  - |
+    This sets the environment variable `CC` to `gcc` or `clang`, respectively.
 
-    - yaml: |
-        wuth_items: '{{ user.names }}'
+  - |
+    The `${{ matrix.compiler }}` syntax is not a special YAML syntax.<br>
+    It is a simple plain scalar that could also have been written in quotes:
+  - yaml: |
+        env:
+          CC: '${{ matrix.compiler }}'
+  - |
+    It's the GitHub Action application that recognizes such variables and
+    replaces them with their content at runtime.
 
-    - |
-      It is important to add quotes here, because the `{` at the start actually
-      would start a [Flow Style Mapping](#topic:flowstyle) otherwise.<br>
-      <i>(Link to Flow Style Chapter)</i>
-    - |
-      So it's clever that GitHub Actions chose the `${{ ... }}` syntax, because
-      the `$` at the start is not special in YAML and doesn't need quotes.
+  - |
+    Such variables can look different, depending on the application.
+  - |
+    For example, [Ansible](https://www.ansible.com/) is using the
+    [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templating engine,
+    where variables look like this:
+
+  - yaml: |
+      wuth_items: '{{ user.names }}'
+
+  - |
+    It is important to add quotes here, because the `{` at the start actually
+    would start a [Flow Style Mapping](#topic:flowstyle) otherwise.<br>
+    <i>(Link to Flow Style Chapter)</i>
+  - |
+    So it's clever that GitHub Actions chose the `${{ ... }}` syntax, because
+    the `$` at the start is not special in YAML and doesn't need quotes.
 

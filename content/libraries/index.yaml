@@ -1,6 +1,6 @@
 ---
 title: Libraries - yaml.info
-sections:
+links:
 - overview: Libary Overview
 - features:
     title: Features not implemented
@@ -8,93 +8,89 @@ sections:
     - empty: Empty Keys
     - alias: Alias Characters
 
-source:
-- section:
-    name: intro
-    title: Libraries implementing YAML
-    content:
-    - |
-      YAML processors are available in many languages, some even in bash,
-      although probably not very complete.
-    - |
-      Because of the history of YAML the implementations differ a lot.
-    - |
-      <ul>
-      <li>There are three versions, `1.0`, `1.1` and `1.2`.</li>
-      <li>The specification for version `1.1` had problems like ambiguity</li>
-      <li>`1.2` was created to solve the problems with `1.1`, but already many
-        implementations had been created and were never updated.</li>
-      <li>There was no test suite until 2016</li>
-      </ul>
+sections:
+- name: intro
+  title: Libraries implementing YAML
+  content:
+  - |
+    YAML processors are available in many languages, some even in bash,
+    although probably not very complete.
+  - |
+    Because of the history of YAML the implementations differ a lot.
+  - |
+    <ul>
+    <li>There are three versions, `1.0`, `1.1` and `1.2`.</li>
+    <li>The specification for version `1.1` had problems like ambiguity</li>
+    <li>`1.2` was created to solve the problems with `1.1`, but already many
+      implementations had been created and were never updated.</li>
+    <li>There was no test suite until 2016</li>
+    </ul>
 
-- section:
-    name: overview
-    title: Library Overview
-    content:
-    - |
-      This table is work in progress. More information will be following.
-    - table: 1
+- name: overview
+  title: Library Overview
+  content:
+  - |
+    This table is work in progress. More information will be following.
+  - table: 1
 
 
-- section:
-    name: features
-    title: Features not implemented in every Library
-    content:
-    - |
-      libyaml and PyYAML have been implemented by Kirill Simonov in 2006.
-      Many other implementations were ported from them or use libyaml bindings.
-    - |
-      There were a number of features where the author diverged from the spec.
-    - |
-      While that might have been a good idea, the YAML Spec itself did not
-      follow that, and so some libraries support features, while implementations
-      originating from libyaml do not.
-    - |
-      This is a (still very incomplete) list of features that you should avoid
-      to be compatible to as much libraries as pssible.
-    - Most of them aren't relevant in the real world.
+- name: features
+  title: Features not implemented in every Library
+  content:
+  - |
+    libyaml and PyYAML have been implemented by Kirill Simonov in 2006.
+    Many other implementations were ported from them or use libyaml bindings.
+  - |
+    There were a number of features where the author diverged from the spec.
+  - |
+    While that might have been a good idea, the YAML Spec itself did not
+    follow that, and so some libraries support features, while implementations
+    originating from libyaml do not.
+  - |
+    This is a (still very incomplete) list of features that you should avoid
+    to be compatible to as much libraries as pssible.
+  - Most of them aren't relevant in the real world.
 
-- section:
-    name: empty
-    title: Empty Keys
-    content:
-    - yaml: |
-        ---
-        key: value
-        : value2
+- name: empty
+  title: Empty Keys
+  content:
+  - yaml: |
+      ---
+      key: value
+      : value2
 
-    - |
-      In YAML 1.2, by default, this is basically the same as:
-    - yaml: |
-        ---
-        key: value
-        null: value2
-    - |
-      Depending on the programming language, the key will often be converted to
-      the empty string.
-    - |
-      Having empty strings or `null` as keys is rare, and if you need them, you
-      should explicitly write what you want:
-    - yaml: |
-        ---
-        key: value
-        null: value2
-        ---
-        key: value
-        '': value2
-- section:
-    name: alias
-    title: Allowed characters in Aliases/Anchors
-    content:
-    - |
-      The spec says that pretty much every character is allowed:
-    - yaml: |
-        - &😁 unicode anchor
-        - &:@*!$"<foo> WTF?
-    - |
-      libyaml originated libraries usually only support `[A-Za-z0-9-]`:
-    - yaml: |
-        - &Valid-anchor1 simple
+  - |
+    In YAML 1.2, by default, this is basically the same as:
+  - yaml: |
+      ---
+      key: value
+      null: value2
+  - |
+    Depending on the programming language, the key will often be converted to
+    the empty string.
+  - |
+    Having empty strings or `null` as keys is rare, and if you need them, you
+    should explicitly write what you want:
+  - yaml: |
+      ---
+      key: value
+      null: value2
+      ---
+      key: value
+      '': value2
+
+- name: alias
+  title: Allowed characters in Aliases/Anchors
+  content:
+  - |
+    The spec says that pretty much every character is allowed:
+  - yaml: |
+      - &😁 unicode anchor
+      - &:@*!$"<foo> WTF?
+  - |
+    libyaml originated libraries usually only support `[A-Za-z0-9-]`:
+  - yaml: |
+      - &Valid-anchor1 simple
 
 # TODO
 # http://matrix.yaml.io/details/7Z25.html#c-libyaml-event

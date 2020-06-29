@@ -3,7 +3,8 @@ title: Index
 sidenav:
   class: narrow
 
-source:
-- |
-  <h2>Topic Index</h2>
-- index: 1
+sections:
+- name: index
+  title: Topic Index
+  content:
+  - index: 1

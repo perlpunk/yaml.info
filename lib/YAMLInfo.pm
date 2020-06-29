@@ -53,7 +53,7 @@ sub make_sidenav($sidenav, $page, $content) {
     my $info = $sidenav->{ $paths[0] } || [];
     my $html;
     my $basepath = $page =~ m{/} ? '../' : '';
-    my $sections = make_sections($content->{sections});
+    my $sections = make_sections($content->{links});
     unless (@$info) {
         $html .= $sections;
     }

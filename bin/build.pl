@@ -90,52 +90,44 @@ for my $page (@pages) {
     }
     my $main;
     my %topics;
-    for my $item (@{ $content->{source} }) {
-        if (ref $item) {
-            if (my $yaml = $item->{yaml}) {
-                $main .= highlight($yaml);
-            }
-            elsif (my $createindex = $item->{index}) {
-                my $indexhtml = make_index(\%index);
-                $main .= $indexhtml;
-            }
-            elsif (my $section = $item->{section}) {
-                my $name = $section->{name};
-                my $title = $section->{title};
-                $main .= qq{<div class="section" id="$name">\n};
-                $main .= qq{<h2>$title</h2>\n};
-                for my $item (@{ $section->{content} }) {
-                    if (ref $item) {
-                        if (my $yaml = $item->{yaml}) {
-                            $main .= highlight($yaml);
-                        }
-                        elsif (my $code = $item->{code}) {
-                            $main .= code($code);
-                        }
-                        elsif (my $htmlfile = $item->{terminal}) {
-                            open my $fh, '<', "$datadir/$htmlfile";
-                            my $html = do { local $/; <$fh> };
-                            close $fh;
-                            chomp $html;
-                            $main .= qq{<pre class="terminal">$html</pre>\n};
-                        }
-                        elsif (my $table = $item->{table}) {
-                            $main .= $tables{ $table };
-                        }
-                        elsif (my $repo = $item->{repology}) {
-                            $main .= $repology;
-                        }
-                    }
-                    else {
-                        $main .= "<p>" . tohtml($item, \%topics) . "</p>";
-                    }
+    for my $section (@{ $content->{sections} }) {
+        my $name = $section->{name};
+        my $title = $section->{title};
+        $main .= qq{<div class="section" id="$name">\n};
+        $main .= qq{<h2>$title</h2>\n};
+        for my $item (@{ $section->{content} }) {
+            if (ref $item) {
+                if ($page eq 'topics') {
                 }
-                $main .= qq{</div>\n};
+                if (my $yaml = $item->{yaml}) {
+                    $main .= highlight($yaml);
+                }
+                elsif (my $code = $item->{code}) {
+                    $main .= code($code);
+                }
+                elsif (my $createindex = $item->{index}) {
+                    my $indexhtml = make_index(\%index);
+                    $main .= $indexhtml;
+                }
+                elsif (my $htmlfile = $item->{terminal}) {
+                    open my $fh, '<', "$datadir/$htmlfile";
+                    my $html = do { local $/; <$fh> };
+                    close $fh;
+                    chomp $html;
+                    $main .= qq{<pre class="terminal">$html</pre>\n};
+                }
+                elsif (my $table = $item->{table}) {
+                    $main .= $tables{ $table };
+                }
+                elsif (my $repo = $item->{repology}) {
+                    $main .= $repology;
+                }
+            }
+            else {
+                $main .= "<p>" . tohtml($item, \%topics) . "</p>";
             }
         }
-        else {
-            $main .= "<p>" . tohtml($item, \%topics) . "</p>";
-        }
+        $main .= qq{</div>\n};
     }
     my $basepath = $page =~ m{/} ? '..' : '.';
     $index{ $page } = \%topics;
