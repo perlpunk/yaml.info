@@ -13,17 +13,22 @@ sections:
     A YAML file or Stream can contain multiple [Documents](#topic:document).
   - |
     YAML Libraries typically have functions like `load` and `load_all` to read
-    only the first or all documents.
+    only one or all documents.
 
 - name: start
   title: Document Start
   content:
   - |
-    For the first document, the Document start marker is optional, but it is
-    also a way to mark something as YAML explicitly:
+    A Document can explicitly be started with `---`. In the specification this
+    is called the "Directives end marker".
+  - |
+    Since directives are not used very often, and a lot of YAML users don't
+    know they exist, this can be confusing. I will call it "Document Start".
+  - |
+    For the first document, the Document Start is optional, but it is also
+    a way to mark something as YAML explicitly:
   - yaml: |
-      ---
-      # with optional document start marker
+      --- # with optional document start marker
       invoice number: 314159
       name: Santa Claus
       address: North Pole
@@ -32,6 +37,7 @@ sections:
     If a file contains multiple documents, they must be separated with the
     document start marker:
   - yaml: |
+      --- # The first one is still optional
       invoice number: 314159
       name: Santa Claus
       address: North Pole
@@ -111,7 +117,7 @@ sections:
   - <h3>Streaming Context</h3>
   - |
     When YAML is used in a Stream, for example over network, it might be
-    important to tell the receiver that the document has ended.
+    important to tell the receiver that the document has ended:
 
   - yaml: |
       ---
@@ -119,15 +125,22 @@ sections:
       name: Santa Claus
       address: North Pole
       ...
+
+      # time passes...
+
       ---
       invoice number: 314160
       name: Santa Claus
       address: North Pole
       ...
+
+      # time passes...
+
       ---
       invoice number: 314161
       name: Santa Claus
       address: North Pole
+      ...
 
   - |
     <b>Theoretically</b> it's also possible to only use the Document End Marker
@@ -144,6 +157,7 @@ sections:
       invoice number: 314161
       name: Santa Claus
       address: North Pole
+      ...
 
   - |
     However, that's not supported by all libraries. To be safe, always use the
@@ -169,8 +183,7 @@ sections:
 
   - |
     If you use a directive, the Document Start Marker must always follow.
-    In the YAML Specification, the Document Start is actually called "Directives
-    End Marker".
+    That's why in the YAML Specification, it is called "Directives End Marker".
   - |
     In YAML 1.2, a directive is <b>only</b> applied to the following document,
     not to the whole file or stream.

@@ -93,7 +93,7 @@ sections:
   title: Flow Scalars
   content:
   - |
-    The three types of Flow Scalars have some common rules.
+    The three types of [Flow Scalars](#topic:flowscalar) have some common rules.
   - |
     They can be on multiple lines, and can start on the same line
     as the parent node.
@@ -443,8 +443,12 @@ sections:
   - |
     When your string is longer, it can be a good idea to use a block scalar to
     make it more readable.
+  - |
+    An advantage is that inside of the block scalar any character sequence
+    is allowed. It is ended by a less indented line so you can freely use
+    `:<space>`, `<space>#` and quotes.
   - You can choose between Literal and Folded Block Scalars.
-  - In both, you cannot use escape sequences.
+  - You can not use escape sequences like `\t` for tabs.
   - Spaces at the beginning or end of the line will be preserved.
 
 - name: literal
@@ -522,7 +526,7 @@ sections:
           four
         quoted: "line one\n  line two\n  line three\nline four\n"
   - |
-    Another difference to quoted folding is that trailing spaces are kept:
+    Another difference to flow folding is that trailing spaces are kept:
   # yamllint disable rule:trailing-spaces
   - yaml: |
         a text with long lines: >

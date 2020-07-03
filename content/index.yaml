@@ -1,24 +1,36 @@
 ---
 title: '!yaml.info'
 sidenav:
-  class: narrow
+  class: none
 
 sections:
 - name: intro
   title: YAML Ain't Markup Language™
   content:
   - |
-    This site offers various information around the <a
-    href="https://yaml.org/">YAML serialization language</a>.
+    This site offers various information around the [YAML serialization
+    language](https://yaml.org/).
   - |
     <b>It's still work in progress. Links might change.</b>
   - |
-    <h3><a href="learn/index.html">Learn YAML</a></h3>
+    <h3>
+    <img src="img/learn.svg" valign="middle" height="30">
+    [Learn YAML](learn/index.html)
+    </h3>
   - |
     A YAML Tutorial and Reference
   - |
-    <h3><a href="libraries/index.html">YAML Libraries</a></h3>
+    <h3>
+    <img src="img/book.svg" valign="middle" height="30">
+    [YAML Libraries](libraries/index.html)
+    </h3>
   - |
     Existing YAML Libraries
   - |
     Information for developers
+  - |
+    <h3>
+    <img src="img/list.svg" valign="middle" height="30">
+    [Topic Index](topics.html)
+    </h3>
+    Check the Index if you are searching for a specific topic or term.
