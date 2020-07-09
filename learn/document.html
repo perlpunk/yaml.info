@@ -35,20 +35,24 @@
 <h2>Documents</h2>
 <p>A YAML file or Stream can contain multiple <a class="topic">Documents</a>.
 </p><p>YAML Libraries typically have functions like <span class="code">load</span> and <span class="code">load_all</span> to read
-only the first or all documents.
+only one or all documents.
 </p></div>
 <div class="section" id="start">
 <h2>Document Start</h2>
-<p>For the first document, the Document start marker is optional, but it is
-also a way to mark something as YAML explicitly:
-</p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol">
-</span><span class="eol"># with optional document start marker
+<p>A Document can explicitly be started with <span class="code">---</span>. In the specification this
+is called the "Directives end marker".
+</p><p>Since directives are not used very often, and a lot of YAML users don't
+know they exist, this can be confusing. I will call it "Document Start".
+</p><p>For the first document, the Document Start is optional, but it is also
+a way to mark something as YAML explicitly:
+</p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol"> # with optional document start marker
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
 </span></pre></div><p>If a file contains multiple documents, they must be separated with the
 document start marker:
-</p><div class="yaml codebox"><pre><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
+</p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol"> # The first one is still optional
+</span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
 </span><span class="doc_start">---</span><span class="eol">
@@ -108,21 +112,28 @@ saves the file without the last line ending.
 </span><span class="eol">
 </span><span class="doc_end">...</span><span class="eol">
 </span></pre></div><p><h3>Streaming Context</h3></p><p>When YAML is used in a Stream, for example over network, it might be
-important to tell the receiver that the document has ended.
+important to tell the receiver that the document has ended:
 </p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol">
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
 </span><span class="doc_end">...</span><span class="eol">
+</span><span class="eol">
+</span><span class="eol"># time passes...
+</span><span class="eol">
 </span><span class="doc_start">---</span><span class="eol">
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314160</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
 </span><span class="doc_end">...</span><span class="eol">
+</span><span class="eol">
+</span><span class="eol"># time passes...
+</span><span class="eol">
 </span><span class="doc_start">---</span><span class="eol">
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314161</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
 </span></pre></div><p><b>Theoretically</b> it's also possible to only use the Document End Marker
 to separate Documents:
 </p><div class="yaml codebox"><pre><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
@@ -136,6 +147,7 @@ to separate Documents:
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314161</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
+</span><span class="doc_end">...</span><span class="eol">
 </span></pre></div><p>However, that's not supported by all libraries. To be safe, always use the
 Document start marker when using multiple documents.
 </p></div>
@@ -152,8 +164,7 @@ of YAML the document is written in.
 </span><span class="doc_start">---</span><span class="eol">
 </span><span class="plainkey">a</span><span class="colon">:</span><span class="default"> </span><span class="default">mapping</span><span class="eol">
 </span></pre></div><p>If you use a directive, the Document Start Marker must always follow.
-In the YAML Specification, the Document Start is actually called "Directives
-End Marker".
+That's why in the YAML Specification, it is called "Directives End Marker".
 </p><p>In YAML 1.2, a directive is <b>only</b> applied to the following document,
 not to the whole file or stream.
 </p><p>So if you have multiple documents, you need both the Document Start and End
@@ -201,7 +212,7 @@ Schema in the <a href="schema.html">Schema Chapter</a>.
 </p>
 </div>
 <div id="footer">
-<a href="../topics.html">Index</a>
+<a href="../topics.html">Topic Index</a>
 <p>
 <a href="https://github.com/perlpunk/yaml.info/blob/master/LICENSE">© 2020 Tina Müller</a>
 <a href="https://github.com/perlpunk/yaml.info">https://github.com/perlpunk/yaml.info</a>

@@ -102,7 +102,7 @@ mistakes.
 </span></pre></div></div>
 <div class="section" id="flow">
 <h2>Flow Scalars</h2>
-<p>The three types of Flow Scalars have some common rules.
+<p>The three types of <a class="topic">Flow Scalars</a> have some common rules.
 </p><p>They can be on multiple lines, and can start on the same line
 as the parent node.
 </p><p>Linebreaks are subject to flow folding:
@@ -355,7 +355,10 @@ a similar effect:
 <h2>Block Scalars</h2>
 <p>When your string is longer, it can be a good idea to use a block scalar to
 make it more readable.
-</p><p>You can choose between Literal and Folded Block Scalars.</p><p>In both, you cannot use escape sequences.</p><p>Spaces at the beginning or end of the line will be preserved.</p></div>
+</p><p>An advantage is that inside of the block scalar any character sequence
+is allowed. It is ended by a less indented line so you can freely use
+<span class="code">:&lt;space&gt;</span>, <span class="code">&lt;space&gt;#</span> and quotes.
+</p><p>You can choose between Literal and Folded Block Scalars.</p><p>You can not use escape sequences like <span class="code">\t</span> for tabs.</p><p>Spaces at the beginning or end of the line will be preserved.</p></div>
 <div class="section" id="literal">
 <h2>Literal Block Scalar</h2>
 <p>A Literal Block Scalar is introduced with the <span class="code">|</span> pipe. The content starts
@@ -410,7 +413,7 @@ known:
 </span><span class="indent">  </span><span class="block_scalar_content">line</span><span class="eol">
 </span><span class="indent">  </span><span class="block_scalar_content">four</span><span class="eol">
 </span><span class="plainkey">quoted</span><span class="colon">:</span><span class="default"> </span><span class="doublequote">&quot;</span><span class="doublequoted">line one\n  line two\n  line three\nline four\n</span><span class="doublequote">&quot;</span><span class="eol">
-</span></pre></div><p>Another difference to quoted folding is that trailing spaces are kept:
+</span></pre></div><p>Another difference to flow folding is that trailing spaces are kept:
 </p><div class="yaml codebox"><pre><span class="plainkey">a text with long lines</span><span class="colon">:</span><span class="default"> </span><span class="folded">&gt;</span><span class="eol">
 </span><span class="indent">  </span><span class="trailing_space">trailing spaces   </span><span class="eol">
 </span><span class="indent">  </span><span class="block_scalar_content">continued</span><span class="eol">
@@ -563,7 +566,7 @@ it contains <span class="code">---</span> or <span class="code">...</span>.
 </p>
 </div>
 <div id="footer">
-<a href="../topics.html">Index</a>
+<a href="../topics.html">Topic Index</a>
 <p>
 <a href="https://github.com/perlpunk/yaml.info/blob/master/LICENSE">© 2020 Tina Müller</a>
 <a href="https://github.com/perlpunk/yaml.info">https://github.com/perlpunk/yaml.info</a>
