@@ -26,6 +26,7 @@
 <li><a id="link_config" href="#config">Configuration Management</a></li>
 </ul></ul><a class="top" href="../learn/document.html">Documents</a>
 <a class="top" href="../learn/quote.html">Quoting</a>
+<a class="top" href="../learn/flowstyle.html">Flow Style</a>
 <a class="top" href="../learn/schema.html">Schema</a>
 <a class="top" href="../learn/bestpractices.html">Best Practices</a>
 
@@ -61,7 +62,7 @@ sequence type.<br>
 But some have tuples, which needs a custom tag.
 </li>
 </ul>
-</p><p>Additionally to the indentation based <a class="topic">Block Style</a> there is a more compact <a class="topic">Flow Style</a> syntax.</p><p>One YAML File (or Stream) can consist of more than one <a class="topic">Document</a>.</p></div>
+</p><p>Additionally to the indentation based <a class="topic">Block Style</a> there is a more compact <a href="flowstyle.html">Flow Style</a> syntax.</p><p>One YAML File (or Stream) can consist of more than one <a href="document.html">Document</a>.</p></div>
 <div class="section" id="tutorial">
 <h2>Tutorial</h2>
 <p>The following examples will introduce you with YAML syntax elements step
@@ -161,7 +162,7 @@ Style</a>:
 </p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="flowseq_start">[</span><span class="default"> </span><span class="default">2</span><span class="flow_comma">,</span><span class="default"> </span><span class="default">3</span><span class="default"> </span><span class="flowseq_end">]</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="flowseq_start">[</span><span class="default"> </span><span class="default">3</span><span class="flow_comma">,</span><span class="default"> </span><span class="default">6</span><span class="default"> </span><span class="flowseq_end">]</span><span class="eol">
-</span></pre></div><p><i>Link to Flow Style Chapter</i>
+</span></pre></div><p>Read more about it in the <a href="flowstyle.html">Flow Style Chapter</a>.
 </p><p><h3>Aliases / Anchors</h3></p><p>Let's add a billing address to the invoice.
 </p><p>In our case it is the same as the shipping address.
 We rename <span class="code">address</span> to <span class="code">shipping address</span> and add <span class="code">billing address</span>:
@@ -300,8 +301,7 @@ replaces them with their content at runtime.
 where variables look like this:
 </p><div class="yaml codebox"><pre><span class="plainkey">wuth_items</span><span class="colon">:</span><span class="default"> </span><span class="singlequote">&#39;</span><span class="singlequoted">{{ user.names }}</span><span class="singlequote">&#39;</span><span class="eol">
 </span></pre></div><p>It is important to add quotes here, because the <span class="code">{</span> at the start actually
-would start a <a class="topic">Flow Style Mapping</a> otherwise.<br>
-<i>(Link to Flow Style Chapter)</i>
+would start a <a href="flowstyle.html">Flow Style Mapping</a> otherwise.<br>
 </p><p>So it's clever that GitHub Actions chose the <span class="code">${{ ... }}</span> syntax, because
 the <span class="code">$</span> at the start is not special in YAML and doesn't need quotes.
 </p></div>
