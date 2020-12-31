@@ -45,9 +45,10 @@ sections:
     </li>
     </ul>
   - Additionally to the indentation based [Block Style](#topic:block)
-    there is a more compact [Flow Style](#topic:flowstyle) syntax.
+    there is a more compact [Flow Style](flowstyle.html)
+    syntax.
   - One YAML File (or Stream) can consist of more than one
-    [Document](#topic:document).
+    [Document](document.html).
 
 - name: tutorial
   title: Tutorial
@@ -195,7 +196,7 @@ sections:
       - [ 3, 6 ]
 
   - |
-    <i>Link to Flow Style Chapter</i>
+    Read more about it in the [Flow Style Chapter](flowstyle.html).
 
   - <h3>Aliases / Anchors</h3>
   - |
@@ -397,8 +398,7 @@ sections:
 
   - |
     It is important to add quotes here, because the `{` at the start actually
-    would start a [Flow Style Mapping](#topic:flowstyle) otherwise.<br>
-    <i>(Link to Flow Style Chapter)</i>
+    would start a [Flow Style Mapping](flowstyle.html) otherwise.<br>
   - |
     So it's clever that GitHub Actions chose the `${{ ... }}` syntax, because
     the `$` at the start is not special in YAML and doesn't need quotes.

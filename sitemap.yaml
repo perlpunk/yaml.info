@@ -5,6 +5,7 @@ top:
   - index: Learn
   - document: Documents
   - quote: Quoting
+  - flowstyle: Flow Style
   - schema: Schema
   - bestpractices: Best Practices
   # - versions: Versions

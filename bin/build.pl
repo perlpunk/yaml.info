@@ -29,6 +29,7 @@ my $libraries = $yp->load_file("$Bin/../libraries.yaml");
 
 my @pages = qw(
   index learn/index learn/quote learn/bestpractices learn/schema learn/document
+  learn/flowstyle
   libraries/index libraries/dev libraries/repology
   topics
 );

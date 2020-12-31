@@ -1,0 +1,144 @@
+---
+title: Flow Style - yaml.info
+links:
+- sequence: Sequences
+- mapping: Mappings
+- quoting: Quoting
+- nested: Nested
+
+sections:
+
+- name: intro
+  title: Flow Style
+  content:
+  - |
+    YAML is best known for its indentation based block style. Each entry, a
+    sequence item, a key value pair or a scalar, is on its own line.
+  - |
+    There are many use cases where a more compact style is helpful.
+    in YAML it's called [Flow Style](#topic:flowstyle).
+  - |
+    There are Flow Style Collections and Flow Scalars.
+  - |
+    This chapter is about Collections, while Flow Scalars are part of the
+    [Quoting Chapter](quote.html).
+
+- name: sequence
+  title: Sequences
+  content:
+  - |
+    Let's say you define a list of perl versions in a CI configuration file:
+  - yaml: |
+      ---
+      perl:
+      - 5.8
+      - 5.10
+      - 5.12
+      - 5.14
+      - 5.16
+      - 5.18
+      - 5.20
+      - 5.22
+      - 5.24
+      - 5.26
+      - 5.28
+      - 5.30
+  - |
+    You can write that in flow style to save space.
+    A sequence is enclosed in square brackets `[]`, and entries are separated
+    by commas `,`:
+  - yaml: |
+      ---
+      perl: [5.8, 5.10, 5.12, 5.14, 5.16, 5.18, 5.20, 5.22, 5.24, 5.26, 5.28, 5.30]
+  - |
+    That looks similar to JSON, and in fact, JSON is a subset of YAML 1.2.
+    The difference is that you don't need to quote the strings, just like in
+    block style.
+  - |
+    If the line gets too long, you can wrap it:
+  - yaml: |
+      ---
+      perl: [5.8, 5.10, 5.12, 5.14, 5.16, 5.18, 5.20, 5.22,
+        5.24, 5.26, 5.28, 5.30]
+  - |
+    You can also put the brackets on their own lines:
+  - yaml: |
+      ---
+      perl: [
+          5.8, 5.10, 5.12, 5.14, 5.16, 5.18, 5.20, 5.22,
+          5.24, 5.26, 5.28, 5.30
+        ]
+  - |
+    Note that even the last closing bracket must be indented (more than the
+    parent block style item), so the following
+    would be invalid:
+  - yaml: |
+      ---
+      perl: [
+        5.8, 5.10, 5.12, 5.14, 5.16, 5.18, 5.20, 5.22,
+        5.24, 5.26, 5.28, 5.30
+      ]
+  - |
+    You might notice that many YAML parsers accept it, though. To be compatible
+    with all parsers, you should indent it.
+  - |
+    You can also use comments inside flow style collections:
+  - yaml: |
+      ---
+      perl: [ # Test all important perl versions
+        5.8, 5.10, 5.12, 5.14, 5.16, 5.18, 5.20, 5.22,
+        5.24, 5.26, 5.28, 5.30
+      ]
+
+
+- name: mapping
+  title: Mappings
+  content:
+  - |
+    Let's say you have a list of coordinates. Each coordinate set is a mapping:
+  - yaml: |
+      ---
+      - x: 3
+        y: 4
+        z: 5
+      - x: 5
+        y: 4
+        z: 3
+  - |
+    In Flow Style, a mapping is enclosed in curly braces `{}`, and commas `,`
+    separate the key value pairs from each other:
+  - yaml: |
+      ---
+      - {x: 3, y: 4, z: 5}
+      - {x: 5, y: 4, z: 3}
+  - |
+    Or even more compact:
+  - yaml: |
+      ---
+      [ {x: 3, y: 4, z: 5}, {x: 5, y: 4, z: 3} ]
+
+- name: quoting
+  title: Quoting
+  content:
+  - |
+    The rules for quoting are a bit more strict than in block style.
+  - yaml: |
+      --- # Block
+      no: prob{lem,
+      also: f]ine
+
+      --- # Flow
+      {
+        please: 'quo{te,',
+        me: 't]oo'
+      }
+  - |
+    See the [Quoting Chapter](quote.html) for details about which character
+    sequences require quoting additional to block style rules.
+
+- name: nested
+  title: Nested
+  content:
+  - |
+    Inside of flow style collections you can only use flow collections and
+    flow scalars.
