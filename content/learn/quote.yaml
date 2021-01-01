@@ -254,7 +254,7 @@ sections:
     </ul>
   - |
     <h3>Additional exceptions for scalars in
-    [Flow Style Collections](flowstyle.html):</h3>
+    [Flow Style Collections](#topic:flowstyle):</h3>
   - yaml: |
         flow style sequence: [ string one, string two ]
         flow style mapping: { key: value }

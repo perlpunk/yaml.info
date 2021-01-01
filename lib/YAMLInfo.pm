@@ -17,12 +17,18 @@ our @EXPORT_OK = qw(
 );
 
 # we use a veeery simple markup converter for now
-sub tohtml($input, $topics) {
+sub tohtml($page, $input, $topics, $topiclinks) {
+    my $basepath = $page =~ m{/} ? '../' : '';
     $input =~ s{`(.+?)`}{'<span class="code">'.encode_entities($1).'</span>'}eg;
     $input =~ s{```}{<span class="code"></span>}g;
     $input =~ s{\[(.*?)\]\((#topic:)([^\)]+)\)}{
-      $topics->{ $3 }++;
-      qq{<a class="topic">}.encode_entities($1).'</a>'
+        $topics->{ $3 }++;
+        my $link = $topiclinks->{ $3 };
+        unless ($link) {
+            say "no link for $3";
+        }
+        my $href = $link ? qq{href="$basepath$link.html"} : '';
+        qq{<a class="topic" $href>}.encode_entities($1).'</a>'
     }seg;
     $input =~ s{\[(.*?)\]\(([^\)]+)\)}{qq{<a href="$2">}.encode_entities($1).'</a>'}seg;
     return $input;

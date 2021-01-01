@@ -102,12 +102,12 @@ sections:
   content:
   - |
     You do not need to [quote](#topic:quote) scalars in most cases. The
-    [Quoting Chapter](quote.html) has detailed information about that.
+    [Quoting Chapter](#topic:quote) has detailed information about that.
   - |
     If you are unsure, here are some hints. To be safe, use quotes:
   - |
     <ul>
-    <li>If it could be a special type, but you want a string (see [Schema](schema.html))
+    <li>If it could be a special type, but you want a string (see [Schema](#topic:schema))
     <li>If the scalar starts with a non-alphanumeric character
     <li>If the scalar contains control characters
     <li>If the scalar contains tabs

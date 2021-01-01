@@ -26,6 +26,7 @@ my $out_dir = "$Bin/../gh-pages";
 my $yp = YAML::PP->new;
 my $sitemap = $yp->load_file("$Bin/../sitemap.yaml");
 my $libraries = $yp->load_file("$Bin/../libraries.yaml");
+my $topiclinks = $yp->load_file("$Bin/../content/_topics.yaml");
 
 my @pages = qw(
   index learn/index learn/quote learn/bestpractices learn/schema learn/document
@@ -125,7 +126,7 @@ for my $page (@pages) {
                 }
             }
             else {
-                $main .= "<p>" . tohtml($item, \%topics) . "</p>";
+                $main .= "<p>" . tohtml($page, $item, \%topics, $topiclinks) . "</p>";
             }
         }
         $main .= qq{</div>\n};

@@ -1,0 +1,14 @@
+---
+document: learn/document
+flowstyle: learn/flowstyle
+scalar: learn/index
+sequence: learn/index
+mapping: learn/index
+blockstyle: learn/index
+blockscalar: learn/quote
+flowscalar: learn/quote
+quote: learn/quote
+directive: learn/document
+tag: learn/schema
+schema: learn/schema
+alias: learn/index

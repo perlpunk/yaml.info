@@ -21,7 +21,7 @@ sections:
     There are Flow Style Collections and Flow Scalars.
   - |
     This chapter is about Collections, while Flow Scalars are part of the
-    [Quoting Chapter](quote.html).
+    [Quoting Chapter](#topic:quote).
 
 - name: sequence
   title: Sequences
@@ -88,7 +88,7 @@ sections:
       perl: [ # Test all important perl versions
         5.8, 5.10, 5.12, 5.14, 5.16, 5.18, 5.20, 5.22,
         5.24, 5.26, 5.28, 5.30
-      ]
+        ]
 
 
 - name: mapping
@@ -133,7 +133,7 @@ sections:
         me: 't]oo'
       }
   - |
-    See the [Quoting Chapter](quote.html) for details about which character
+    See the [Quoting Chapter](#topic:quote) for details about which character
     sequences require quoting additional to block style rules.
 
 - name: nested

@@ -44,11 +44,11 @@ sections:
     But some have tuples, which needs a custom tag.
     </li>
     </ul>
-  - Additionally to the indentation based [Block Style](#topic:block)
-    there is a more compact [Flow Style](flowstyle.html)
+  - Additionally to the indentation based [Block Style](#topic:blockstyle)
+    there is a more compact [Flow Style](#topic:flowstyle)
     syntax.
   - One YAML File (or Stream) can consist of more than one
-    [Document](document.html).
+    [Document](#topic:document).
 
 - name: tutorial
   title: Tutorial
@@ -89,7 +89,7 @@ sections:
     It has some use cases, and it is needed when you have multiple Documents
     in one file.
   - |
-    Read more about it in the [Document Chapter](document.html).
+    Read more about it in the [Document Chapter](#topic:document).
 
   - |
     <h3>Nested Mappings</h3>
@@ -196,7 +196,7 @@ sections:
       - [ 3, 6 ]
 
   - |
-    Read more about it in the [Flow Style Chapter](flowstyle.html).
+    Read more about it in the [Flow Style Chapter](#topic:flowstyle).
 
   - <h3>Aliases / Anchors</h3>
   - |
@@ -337,7 +337,7 @@ sections:
     with spaces, and empty lines create a linebreak.
   - |
     Read more about [Block Scalars](#topic:blockscalar) and all other ways of
-    quoting in the [Quoting Chapter](quote.html).
+    quoting in the [Quoting Chapter](#topic:quote).
 
   - <h3>Variables</h3>
   - |
@@ -398,7 +398,7 @@ sections:
 
   - |
     It is important to add quotes here, because the `{` at the start actually
-    would start a [Flow Style Mapping](flowstyle.html) otherwise.<br>
+    would start a [Flow Style Mapping](#topic:flowstyle) otherwise.<br>
   - |
     So it's clever that GitHub Actions chose the `${{ ... }}` syntax, because
     the `$` at the start is not special in YAML and doesn't need quotes.

@@ -237,4 +237,4 @@ sections:
     short form.
   - |
     But the standard YAML tags are rarely needed. Read more about Tags and
-    Schema in the [Schema Chapter](schema.html).
+    Schema in the [Schema Chapter](#topic:schema).
