@@ -38,11 +38,11 @@
 </p><p>A YAML document represents a computer program's native data structure in a human readable text form.
 A node in a YAML document can have three basic data types:
 </p><p><ul>
-<li><a class="topic">Scalar</a><br>
+<li><a class="topic" href="../learn/index.html">Scalar</a><br>
 Atomic data types like strings, numbers, booleans and null</li>
-<li><a class="topic">Sequence</a><br>
+<li><a class="topic" href="../learn/index.html">Sequence</a><br>
 A list of nodes</li>
-<li><a class="topic">Mapping</a></a><br>
+<li><a class="topic" href="../learn/index.html">Mapping</a></a><br>
 A map of nodes to nodes. Also known as Hashes, Hash Maps, Dictionaries or
 Objects.<br> Unlike in many programming languages, a key can be more than
 just a string.<br>
@@ -50,10 +50,10 @@ It can be a sequence or mapping itself.</li>
 </ul>
 </p><p>On top of that, YAML allows to serialize all other data types and classes:
 </p><p><ul>
-<li><a class="topic">Alias and Anchor</a><br>
+<li><a class="topic" href="../learn/index.html">Alias and Anchor</a><br>
 For serializing References / Pointers, including circular references.
 </li>
-<li><a class="topic">Tag</a><br>
+<li><a class="topic" href="../learn/schema.html">Tag</a><br>
 With Tags it's possible to define custom types/classes.<br>
 For example, in many languages a Regular Expression is a builtin data type
 or object.<br>
@@ -62,7 +62,7 @@ sequence type.<br>
 But some have tuples, which needs a custom tag.
 </li>
 </ul>
-</p><p>Additionally to the indentation based <a class="topic">Block Style</a> there is a more compact <a href="flowstyle.html">Flow Style</a> syntax.</p><p>One YAML File (or Stream) can consist of more than one <a href="document.html">Document</a>.</p></div>
+</p><p>Additionally to the indentation based <a class="topic" href="../learn/index.html">Block Style</a> there is a more compact <a class="topic" href="../learn/flowstyle.html">Flow Style</a> syntax.</p><p>One YAML File (or Stream) can consist of more than one <a class="topic" href="../learn/document.html">Document</a>.</p></div>
 <div class="section" id="tutorial">
 <h2>Tutorial</h2>
 <p>The following examples will introduce you with YAML syntax elements step
@@ -83,11 +83,11 @@ Each Key/Value pair is on its own line.
 </span><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="plainkey">address</span><span class="colon">:</span><span class="default"> </span><span class="default">North Pole</span><span class="eol">
-</span></pre></div><p>The <span class="code">---</span> is explicity starting a <a class="topic">Document</a>.
+</span></pre></div><p>The <span class="code">---</span> is explicity starting a <a class="topic" href="../learn/document.html">Document</a>.
 </p><p>It marks the following content as YAML, but it is optional.
 </p><p>It has some use cases, and it is needed when you have multiple Documents
 in one file.
-</p><p>Read more about it in the <a href="document.html">Document Chapter</a>.
+</p><p>Read more about it in the <a class="topic" href="../learn/document.html">Document Chapter</a>.
 </p><p><h3>Nested Mappings</h3>
 </p><p>Now we replace the <span class="code">address</span> string with another mapping. In that case the
 colon is followed by a linebreak. Mapping values that are not scalars
@@ -157,12 +157,12 @@ We map a list of scalars to the key <span class="code">order items</span>.
 </span><span class="default">  </span><span class="dash">-</span><span class="default"> </span><span class="default">3</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="dash">-</span><span class="default"> </span><span class="default">3</span><span class="eol">
 </span><span class="default">  </span><span class="dash">-</span><span class="default"> </span><span class="default">6</span><span class="eol">
-</span></pre></div><p>YAML allows to write that in a more compact way, the <a class="topic">Flow
+</span></pre></div><p>YAML allows to write that in a more compact way, the <a class="topic" href="../learn/flowstyle.html">Flow
 Style</a>:
 </p><div class="yaml codebox"><pre><span class="doc_start">---</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="flowseq_start">[</span><span class="default"> </span><span class="default">2</span><span class="flow_comma">,</span><span class="default"> </span><span class="default">3</span><span class="default"> </span><span class="flowseq_end">]</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="flowseq_start">[</span><span class="default"> </span><span class="default">3</span><span class="flow_comma">,</span><span class="default"> </span><span class="default">6</span><span class="default"> </span><span class="flowseq_end">]</span><span class="eol">
-</span></pre></div><p>Read more about it in the <a href="flowstyle.html">Flow Style Chapter</a>.
+</span></pre></div><p>Read more about it in the <a class="topic" href="../learn/flowstyle.html">Flow Style Chapter</a>.
 </p><p><h3>Aliases / Anchors</h3></p><p>Let's add a billing address to the invoice.
 </p><p>In our case it is the same as the shipping address.
 We rename <span class="code">address</span> to <span class="code">shipping address</span> and add <span class="code">billing address</span>:
@@ -182,11 +182,11 @@ We rename <span class="code">address</span> to <span class="code">shipping addre
 </span><span class="dash">-</span><span class="default"> </span><span class="default">Sled</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="default">Wrapping Paper</span><span class="eol">
 </span></pre></div><p>Now that's a bit wasted space. If it's the same address, you don't need
-to repeat it. Use an <a class="topic">Alias</a>.
+to repeat it. Use an <a class="topic" href="../learn/index.html">Alias</a>.
 </p><p>In the native data structure of a programming language, this would be
 a reference, pointer, or alias.
-</p><p>Before an <a class="topic">Alias</a> can be used, it has to be created
-with an <a class="topic">Anchor</a>:
+</p><p>Before an <a class="topic" href="../learn/index.html">Alias</a> can be used, it has to be created
+with an <a class="topic" href="../learn/index.html">Anchor</a>:
 </p><div class="yaml codebox"><pre><span class="plainkey">invoice number</span><span class="colon">:</span><span class="default"> </span><span class="default">314159</span><span class="eol">
 </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Santa Claus</span><span class="eol">
 </span><span class="eol">
@@ -235,7 +235,7 @@ this:
 </span><span class="dash">-</span><span class="default"> </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Run Tests</span><span class="eol">
 </span><span class="default">  </span><span class="plainkey">run</span><span class="colon">:</span><span class="default"> </span><span class="doublequote">&quot;</span><span class="doublequoted">./configure\nmake\nmake test\n</span><span class="doublequote">&quot;</span><span class="eol">
 </span></pre></div><p>One of the advantages of YAML here is that this can be formatted in a way
-that's easy to write and read with <a class="topic">Block Scalars</a>:
+that's easy to write and read with <a class="topic" href="../learn/quote.html">Block Scalars</a>:
 </p><div class="yaml codebox"><pre><span class="plainkey">steps</span><span class="colon">:</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="plainkey">uses</span><span class="colon">:</span><span class="default"> </span><span class="default">actions/checkout@v2</span><span class="eol">
 </span><span class="dash">-</span><span class="default"> </span><span class="plainkey">name</span><span class="colon">:</span><span class="default"> </span><span class="default">Run Tests</span><span class="eol">
@@ -243,7 +243,7 @@ that's easy to write and read with <a class="topic">Block Scalars</a>:
 </span><span class="indent">    </span><span class="block_scalar_content">./configure</span><span class="eol">
 </span><span class="indent">    </span><span class="block_scalar_content">make</span><span class="eol">
 </span><span class="indent">    </span><span class="block_scalar_content">make test</span><span class="eol">
-</span></pre></div><p>The <a class="topic">Literal Block Scalar</a>, as the name says, contains
+</span></pre></div><p>The <a class="topic" href="../learn/quote.html">Literal Block Scalar</a>, as the name says, contains
 the literal content of the string. Tabs and similar characters are always
 literal. All trailing spaces will be kept.
 </p><p>Let's say, you have a number of longer commands that you would like to
@@ -258,12 +258,12 @@ break up into multiple lines for readability:
 </span><span class="eol">
 </span><span class="indent">    </span><span class="block_scalar_content">cpanm -n -l local</span><span class="eol">
 </span><span class="indent">    </span><span class="block_scalar_content">YAML::PP YAML::XS ...</span><span class="eol">
-</span></pre></div><p>The <a class="topic">Folded Block Scalar</a> is like the Literal Block
+</span></pre></div><p>The <a class="topic" href="../learn/quote.html">Folded Block Scalar</a> is like the Literal Block
 Scalar, but with special folding rules.
 </p><p>Consecutive lines starting at the same indentation level will be folded
 with spaces, and empty lines create a linebreak.
-</p><p>Read more about <a class="topic">Block Scalars</a> and all other ways of
-quoting in the <a href="quote.html">Quoting Chapter</a>.
+</p><p>Read more about <a class="topic" href="../learn/quote.html">Block Scalars</a> and all other ways of
+quoting in the <a class="topic" href="../learn/quote.html">Quoting Chapter</a>.
 </p><p><h3>Variables</h3></p><p>YAML itself has no concept of "variables" or "functions".
 </p><p>Systems like GitHub Actions usually provide a way to access certain
 information and environment variables with a Templating Syntax.
@@ -301,7 +301,7 @@ replaces them with their content at runtime.
 where variables look like this:
 </p><div class="yaml codebox"><pre><span class="plainkey">wuth_items</span><span class="colon">:</span><span class="default"> </span><span class="singlequote">&#39;</span><span class="singlequoted">{{ user.names }}</span><span class="singlequote">&#39;</span><span class="eol">
 </span></pre></div><p>It is important to add quotes here, because the <span class="code">{</span> at the start actually
-would start a <a href="flowstyle.html">Flow Style Mapping</a> otherwise.<br>
+would start a <a class="topic" href="../learn/flowstyle.html">Flow Style Mapping</a> otherwise.<br>
 </p><p>So it's clever that GitHub Actions chose the <span class="code">${{ ... }}</span> syntax, because
 the <span class="code">$</span> at the start is not special in YAML and doesn't need quotes.
 </p></div>
