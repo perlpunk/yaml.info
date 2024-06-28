@@ -259,7 +259,7 @@ sections:
         flow style sequence: [ string one, string two ]
         flow style mapping: { key: value }
   - |
-    As you can see, a comma or a square bracket will end a plain scalar. Therefor,
+    As you can see, a comma or a square bracket will end a plain scalar. Therefore,
     to avoid confusion, the following characters or character sequences
     are not allowed in plain scalars:
   - |
