@@ -43,6 +43,15 @@ yamldotnet:
   yaml-test-suite: ✓
   yaml-runtimes: ✓
 
+corvusjsonschema:
+  name: corvus-jsonschema
+  language: C#
+  homepage: https://github.com/corvus-dotnet/Corvus.JsonSchema
+  syntax:
+    1.1: ✓
+    1.2: ✓
+  yaml-test-suite: ✓
+
 hsyaml:
   name: HsYAML
   language: Haskell
