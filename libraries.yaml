@@ -92,6 +92,21 @@ js-yaml:
   yaml-test-suite: ✓
   yaml-runtimes: ✓
 
+php-yaml:
+  name: y-a-m-l
+  language: PHP
+  homepage: https://github.com/taufik-nurrohman/y-a-m-l
+  syntax:
+    1.1: (✓)
+    1.2: ✓
+  schema:
+    1.1: ✓
+    1.2 Core: ✓
+    1.2 JSON: ✓
+    1.2 Failsafe: ✓
+  options:
+  repology: null
+
 yamlpp:
   name: YAML::PP
   language: Perl
